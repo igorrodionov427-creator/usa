@@ -3,6 +3,8 @@
 window.LANGS = ['en', 'ru', 'de', 'fr', 'es', 'it', 'pl', 'sr'];
 window.I18N_ROWS = [
   // head + nav
+  ["Social media, video, outreach, bots, ads and websites — one team instead of five contractors. Send a task in chat, we deliver it end to end.", "Соцсети, видео, рассылки, боты, реклама и сайты — одна команда вместо пяти подрядчиков. Пишете задачу — мы делаем под ключ.", "Social Media, Video, Mailings, Bots, Werbung und Websites — ein Team statt fünf Dienstleister. Sie schicken die Aufgabe, wir liefern komplett.", "Réseaux sociaux, vidéo, campagnes, bots, pub et sites — une équipe au lieu de cinq prestataires. Envoyez la tâche, on livre clé en main.", "Redes sociales, vídeo, campañas, bots, anuncios y webs — un equipo en lugar de cinco proveedores. Envías la tarea y la entregamos llave en mano.", "Social, video, campagne, bot, pubblicità e siti — un team invece di cinque fornitori. Ci mandi l'incarico, lo consegniamo chiavi in mano.", "Social media, wideo, mailing, boty, reklama i strony — jeden zespół zamiast pięciu wykonawców. Wysyłasz zadanie, my dowozimy całość.", "Društvene mreže, video, kampanje, botovi, reklame i sajtovi — jedan tim umesto pet izvođača. Pošaljete zadatak, mi ga isporučimo kompletno."],
+  ["Black sculptural knot on a light grey background", "Чёрная скульптурная фигура на светло-сером фоне", "Schwarze Skulptur auf hellgrauem Hintergrund", "Sculpture noire sur fond gris clair", "Escultura negra sobre fondo gris claro", "Scultura nera su sfondo grigio chiaro", "Czarna rzeźba na jasnoszarym tle", "Crna skulptura na svetlosivoj pozadini"],
   ["Apolline — we take the busywork off your plate", "Apolline — забираем рутину на себя", "Apolline — wir nehmen Ihnen die Routine ab", "Apolline — on s'occupe des tâches qui vous ralentissent", "Apolline — nos encargamos del trabajo rutinario", "Apolline — ci occupiamo noi della routine", "Apolline — przejmujemy rutynę", "Apolline — preuzimamo rutinu na sebe"],
   ["Home", "Главная", "Start", "Accueil", "Inicio", "Home", "Start", "Početna"],
   ["Services", "Услуги", "Leistungen", "Services", "Servicios", "Servizi", "Usługi", "Usluge"],
@@ -204,10 +206,10 @@ window.I18N_ROWS = [
 ];
 
 (() => {
-  const q = new URLSearchParams(location.search).get('lang');
-  let saved = null;
-  try { saved = localStorage.getItem('lang'); } catch (e) {}
-  const lang = window.LANGS.includes(q) ? q : window.LANGS.includes(saved) ? saved : 'en';
+  // every language is its own static page (/, /ru/, /de/ …); the page states its language in <html lang>
+  const lang = window.LANGS.includes(document.documentElement.lang) ? document.documentElement.lang : 'en';
+  const base = location.pathname.replace(/(?:(?:ru|de|fr|es|it|pl|sr)\/)?(?:index\.html)?$/, '');
+  const urlFor = l => base + (l === 'en' ? '' : l + '/') + location.hash;
   const col = window.LANGS.indexOf(lang), map = new Map();
   window.I18N_ROWS.forEach(r => map.set(r[0], r[col]));
   window.LANG = lang;
@@ -222,6 +224,8 @@ window.I18N_ROWS = [
     nodes.forEach(n => { const key = n.textContent.replace(/\s+/g, ' ').trim(); const tr = key && map.get(key);
       if (tr) { const m = n.textContent.match(/^(\s*)[\s\S]*?(\s*)$/); n.textContent = m[1] + tr + m[2]; } });
   };
-  window.setLang = l => { try { localStorage.setItem('lang', l); } catch (e) {}
-    const u = new URL(location.href); u.searchParams.set('lang', l); location.href = u.href; };
+  window.setLang = l => { location.href = urlFor(l); };
+  // old ?lang=xx links land on the matching page
+  const q = new URLSearchParams(location.search).get('lang');
+  if (window.LANGS.includes(q) && q !== lang) location.replace(urlFor(q));
 })();

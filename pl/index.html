@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Apolline — przejmujemy rutynę</title>
+<meta content="Social media, wideo, mailing, boty, reklama i strony — jeden zespół zamiast pięciu wykonawców. Wysyłasz zadanie, my dowozimy całość." name="description"/>
+<meta content="#dadada" name="theme-color"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111'/%3E%3Ctext x='16' y='21.5' text-anchor='middle' font-family='Arial' font-weight='700' font-size='16' fill='%23fff'%3EA%3C/text%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100..900&amp;family=Archivo:wdth,wght@62..125,100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --u:min(calc(100vw / 1440), 1.333px);
+  --paper:#dadada; --ink:#111; --black:#000; --text:#f4f4f4; --grey:#6f6f6f; --mute:#a9a9a9;
+  --hair:rgba(255,255,255,.14); --hair2:rgba(255,255,255,.28);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ui:'Inter Tight',system-ui,sans-serif; --disp:'Archivo','Inter Tight',sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip;scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--text);font:500 calc(var(--u)*14)/1.45 var(--ui);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+img{display:block}
+.wide{font-family:var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125}
+
+/* ---------- hero ---------- */
+.hero{background:var(--paper);color:var(--ink);overflow:hidden;position:relative}
+.art{position:relative;width:calc(var(--u)*1440);height:calc(var(--u)*938);margin:0 auto}
+.art>*{position:absolute;z-index:2}
+.stage{inset:0;z-index:1;pointer-events:none}
+.photo{position:absolute;left:calc(var(--u)*300);top:calc(var(--u)*150);width:calc(var(--u)*840);height:calc(var(--u)*560);will-change:transform}
+.photo img{width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%);
+  mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 70%,transparent 100%)}
+
+.nav{left:calc(var(--u)*57);top:calc(var(--u)*61);height:calc(var(--u)*48);padding:calc(var(--u)*4);background:#fff;border-radius:999px;display:flex;gap:calc(var(--u)*2)}
+.nav a{position:relative;z-index:1;height:calc(var(--u)*40);padding:0 calc(var(--u)*20);display:grid;place-items:center;border-radius:999px;font:500 calc(var(--u)*14)/1 var(--ui);color:var(--ink);transition:color .35s var(--ease)}
+.nav a.on{color:#fff}
+.nav .slider{position:absolute;z-index:0;top:calc(var(--u)*4);height:calc(var(--u)*40);border-radius:999px;background:var(--ink);transition:left .45s var(--ease),width .45s var(--ease)}
+.date{left:auto;right:calc(var(--u)*360);top:calc(var(--u)*70);text-align:right;font:500 calc(var(--u)*13)/1.35 var(--ui);color:#4a4a4a}
+.date b{display:block;color:var(--ink);font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:calc(var(--u)*8);height:calc(var(--u)*46);padding:0 calc(var(--u)*22);border-radius:999px;background:var(--ink);color:#fff;font:500 calc(var(--u)*14)/1 var(--ui);white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -12px rgba(0,0,0,.5)}
+.btn .ar{display:inline-block;transition:transform .3s var(--ease)}
+.btn:hover .ar{transform:translate(2px,-2px)}
+.btn.light{background:#f4f4f4;color:var(--ink)}
+.btn.line{background:transparent;border:1px solid var(--hair2);color:var(--text)}
+.contact{left:auto;right:calc(var(--u)*157);top:calc(var(--u)*63);padding:0 calc(var(--u)*24)}
+
+.title{left:calc(var(--u)*57);top:calc(var(--u)*290);white-space:nowrap;margin:0;font-family:var(--disp);font-stretch:104%;font-variation-settings:'wdth' 104;font-weight:640;font-size:calc(var(--u)*84);line-height:.86;letter-spacing:-.06em;text-transform:uppercase}
+.title .ln{display:block;overflow:hidden;padding-bottom:.04em}
+.title .ln>span{display:block}
+.yr{left:calc(var(--u)*339);top:calc(var(--u)*272);font:500 calc(var(--u)*15)/1 var(--ui);letter-spacing:-.01em}
+
+.about{left:calc(var(--u)*57);top:calc(var(--u)*458);width:calc(var(--u)*300)}
+.about .lb{font:500 calc(var(--u)*13)/1 var(--ui);letter-spacing:.02em;display:flex;gap:calc(var(--u)*8);align-items:center}
+.about .lb i{width:calc(var(--u)*7);height:calc(var(--u)*7);border-radius:50%;background:var(--ink)}
+.about p{margin:calc(var(--u)*18) 0 0;font:500 calc(var(--u)*14)/1.45 var(--ui);color:#2a2a2a;max-width:calc(var(--u)*280)}
+.book{left:calc(var(--u)*57);top:calc(var(--u)*584)}
+
+.frame{left:calc(var(--u)*57);top:calc(var(--u)*693);width:calc(var(--u)*240);height:calc(var(--u)*208);background:#cdcdcd;border-radius:calc(var(--u)*10);padding:calc(var(--u)*6);display:grid;grid-template-columns:1fr;gap:calc(var(--u)*6)}
+.card-d{background:#151515;color:#f4f4f4;border-radius:calc(var(--u)*7);padding:calc(var(--u)*12) calc(var(--u)*12) calc(var(--u)*8);display:flex;flex-direction:column}
+.card-d .big{font:600 calc(var(--u)*30)/1 var(--ui);letter-spacing:-.04em}
+.card-d small{display:block;margin-top:calc(var(--u)*4);font:500 calc(var(--u)*11)/1.2 var(--ui);color:#9a9a9a}
+.marks{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*7) calc(var(--u)*4);margin:calc(var(--u)*12) 0 auto}
+.marks span{display:flex;align-items:center;gap:calc(var(--u)*3);font:600 calc(var(--u)*7.5)/1 var(--ui);letter-spacing:.01em;color:#cfcfcf;white-space:nowrap}
+.marks svg{width:calc(var(--u)*9);height:calc(var(--u)*9);flex:none}
+.card-d .bar-b{margin-top:calc(var(--u)*8);height:calc(var(--u)*28);border-radius:calc(var(--u)*5);background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 calc(var(--u)*10);font:500 calc(var(--u)*11.5)/1 var(--ui);transition:transform .3s var(--ease)}
+.card-d .bar-b:hover{transform:translateY(-1px)}
+
+.glass{background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border:1px solid rgba(255,255,255,.6)}
+.growth{left:auto;right:calc(var(--u)*57);top:calc(var(--u)*258);height:calc(var(--u)*44);padding:0 calc(var(--u)*8) 0 calc(var(--u)*18);border-radius:999px;display:flex;align-items:center;gap:calc(var(--u)*12);font:500 calc(var(--u)*14)/1 var(--ui);white-space:nowrap}
+.growth i{width:calc(var(--u)*30);height:calc(var(--u)*30);border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.growth svg{width:calc(var(--u)*13);height:calc(var(--u)*13)}
+.avail{right:calc(var(--u)*57);top:calc(var(--u)*442);text-align:right;font:500 calc(var(--u)*27)/1.12 var(--ui);letter-spacing:-.03em}
+.avail span{display:inline-flex;align-items:center;gap:calc(var(--u)*10)}
+.avail span i{width:calc(var(--u)*10);height:calc(var(--u)*10);border-radius:50%;background:var(--ink)}
+.plate{position:absolute;left:calc(var(--u)*538);top:calc(var(--u)*722);width:calc(var(--u)*364);height:calc(var(--u)*73);border-radius:calc(var(--u)*12);display:flex;align-items:center;justify-content:space-between;padding:0 calc(var(--u)*20);color:#f4f4f4;
+  background:rgba(14,14,14,.86);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.plate .mk{display:flex;align-items:center;gap:calc(var(--u)*13)}
+.plate .nh{width:calc(var(--u)*34);height:calc(var(--u)*34);border-radius:calc(var(--u)*9);background:#f4f4f4;color:var(--ink);display:grid;place-items:center;font:700 calc(var(--u)*17)/1 var(--ui);letter-spacing:-.03em}
+.plate b{font-family:var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;font-weight:600;font-size:calc(var(--u)*24);letter-spacing:.01em;line-height:1}
+.plate .menu{width:calc(var(--u)*26);display:grid;gap:calc(var(--u)*6)}
+.plate .menu i{height:calc(var(--u)*2);background:#f4f4f4;border-radius:calc(var(--u)*2)}
+.plate .menu i:last-child{width:62%;justify-self:end}
+.logos{position:absolute;left:calc(var(--u)*530);top:calc(var(--u)*864);width:calc(var(--u)*380);display:flex;justify-content:space-between;align-items:center;color:#2a2a2a}
+.logos span{display:inline-flex;align-items:center;gap:calc(var(--u)*6);white-space:nowrap}
+.lg1{font:700 calc(var(--u)*18)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.08em}
+.lg2{font:500 calc(var(--u)*17)/1 Georgia,serif;font-style:italic;letter-spacing:-.01em}
+.lg3{font:700 calc(var(--u)*16)/1 var(--ui);letter-spacing:-.04em}
+.logos svg{width:calc(var(--u)*14);height:calc(var(--u)*14)}
+
+/* ---------- bar ---------- */
+.bar{height:calc(var(--u)*111);background:var(--black);border-bottom:1px solid var(--hair);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 calc(var(--u)*57);font:600 calc(var(--u)*14)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.04em;text-transform:uppercase}
+.g{color:var(--grey)}
+.bar .mid{display:flex;align-items:center;gap:calc(var(--u)*14)}
+.bar .mid i{width:calc(var(--u)*34);height:calc(var(--u)*34);border-radius:50%;background:#fff;display:grid;place-items:center}
+.bar .mid svg{width:calc(var(--u)*13);height:calc(var(--u)*13);animation:dn 2.2s ease-in-out infinite}
+@keyframes dn{50%{transform:translateY(3px)}}
+.bar .r{justify-self:end}
+
+/* ---------- statement ---------- */
+.statement{padding:calc(var(--u)*170) 0 calc(var(--u)*230);text-align:center}
+.stmt{width:calc(var(--u)*980);max-width:calc(100% - 32px);margin:0 auto;font:500 calc(var(--u)*38)/1.38 var(--ui);letter-spacing:-.028em;color:var(--grey)}
+.sub{margin:calc(var(--u)*150) auto 0;font:500 calc(var(--u)*23)/1.35 var(--ui);letter-spacing:-.02em;color:var(--text)}
+.sub em{font-style:normal;color:var(--grey)}
+
+/* ---------- shared section head ---------- */
+.sec{padding:0 0 calc(var(--u)*150)}
+.wrap{width:calc(var(--u)*1302);margin:0 auto}
+.eyebrow{font:600 calc(var(--u)*13)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);display:flex;gap:calc(var(--u)*10);align-items:center}
+.eyebrow:before{content:'';width:calc(var(--u)*7);height:calc(var(--u)*7);border-radius:50%;background:var(--text)}
+.head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:calc(var(--u)*40);padding-bottom:calc(var(--u)*40);margin-bottom:0;border-bottom:1px solid var(--hair)}
+.h2{margin:calc(var(--u)*22) 0 0;font:500 calc(var(--u)*55)/1.04 var(--ui);letter-spacing:-.045em}
+.h2 em{font-style:normal;color:var(--grey)}
+.head p{margin:0;max-width:calc(var(--u)*360);font:500 calc(var(--u)*14.5)/1.5 var(--ui);color:var(--mute);text-align:right}
+
+/* ---------- trust (why us) ---------- */
+.panel{position:relative;width:calc(var(--u)*1302);height:calc(var(--u)*429);margin:0 auto;border:1px solid var(--hair2);border-radius:calc(var(--u)*14);overflow:hidden}
+.tl{position:absolute;left:calc(var(--u)*51);top:calc(var(--u)*48);width:calc(var(--u)*450)}
+.tl h2{margin:0;font:500 calc(var(--u)*55)/1.04 var(--ui);letter-spacing:-.045em}
+.tl p{margin:calc(var(--u)*28) 0 0;font:500 calc(var(--u)*14.5)/1.5 var(--ui);color:var(--mute);max-width:calc(var(--u)*380)}
+.tile{position:absolute;width:calc(var(--u)*88);height:calc(var(--u)*88);border-radius:calc(var(--u)*12);display:grid;place-items:center;background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.tile svg{width:calc(var(--u)*34);height:calc(var(--u)*34)}
+.tile.t1{left:calc(var(--u)*300);top:calc(var(--u)*22)}
+.tile.t2{left:calc(var(--u)*175);top:calc(var(--u)*150)}
+.cards{position:absolute;top:calc(var(--u)*51);left:calc(var(--u)*537);display:flex;gap:calc(var(--u)*12)}
+.tc{height:calc(var(--u)*326);border-radius:calc(var(--u)*8);flex:none;position:relative;overflow:hidden;transition:transform .5s var(--ease)}
+.tc:hover,.tc.lift{transform:translateY(calc(var(--u)*-6))}
+.tc.av{width:calc(var(--u)*293);background:#d6d6d6;color:var(--ink);padding:calc(var(--u)*22);display:flex;flex-direction:column}
+.avs{display:grid;grid-template-columns:repeat(4,calc(var(--u)*48));gap:calc(var(--u)*14) calc(var(--u)*18)}
+.avs i{width:calc(var(--u)*48);height:calc(var(--u)*48);border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.avs svg{width:calc(var(--u)*21);height:calc(var(--u)*21)}
+.tc .big{font:600 calc(var(--u)*43)/1 var(--ui);letter-spacing:-.045em}
+.tc .cap{margin-top:calc(var(--u)*6);font:500 calc(var(--u)*13)/1.3 var(--ui)}
+.tc.av .big{margin-top:auto}
+.tc.aw{width:calc(var(--u)*298);background:#262626;padding:calc(var(--u)*22);display:flex;flex-direction:column}
+.tc.aw .cap{color:var(--mute)}
+.badge{margin:calc(var(--u)*14) auto 0;width:calc(var(--u)*150);height:calc(var(--u)*118)}
+.tc.aw .note{margin-top:auto;font:500 calc(var(--u)*12)/1.45 var(--ui);color:#8d8d8d}
+.tc.pt{width:calc(var(--u)*200)}
+.tc.pt img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- services ---------- */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--hair)}
+.sv{position:relative;padding:calc(var(--u)*28) calc(var(--u)*26) calc(var(--u)*32);border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);min-height:calc(var(--u)*270);transition:background .5s var(--ease)}
+.sv:hover{background:#0d0d0d}
+.sv .n{display:flex;justify-content:space-between;align-items:center;font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;color:var(--grey)}
+.sv .n i{width:calc(var(--u)*38);height:calc(var(--u)*38);border-radius:50%;border:1px solid var(--hair2);display:grid;place-items:center;transition:background .4s,border-color .4s}
+.sv .n svg{width:calc(var(--u)*17);height:calc(var(--u)*17)}
+.sv:hover .n i{background:#f4f4f4;border-color:#f4f4f4}
+.sv:hover .n svg{stroke:#000}
+.sv h3{margin:calc(var(--u)*44) 0 calc(var(--u)*14);font:500 calc(var(--u)*24)/1.1 var(--ui);letter-spacing:-.035em}
+.sv ul{list-style:none;margin:0;padding:0;display:grid;gap:calc(var(--u)*5);font:500 calc(var(--u)*13.5)/1.4 var(--ui);color:var(--mute)}
+.sv li:before{content:'— ';color:#444}
+.svc-note{margin-top:calc(var(--u)*22);font:500 calc(var(--u)*13)/1.4 var(--ui);color:var(--grey)}
+
+/* ---------- process ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*12);margin-top:calc(var(--u)*40)}
+.step{border:1px solid var(--hair2);border-radius:calc(var(--u)*10);padding:calc(var(--u)*26) calc(var(--u)*24) calc(var(--u)*30);min-height:calc(var(--u)*250);display:flex;flex-direction:column;transition:transform .5s var(--ease),background .5s}
+.step:hover{transform:translateY(calc(var(--u)*-6));background:#0b0b0b}
+.step .n{font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;color:var(--grey)}
+.step .pr{height:calc(var(--u)*2);margin:calc(var(--u)*22) 0 auto;background:var(--hair);overflow:hidden}
+.step .pr i{display:block;height:100%;background:#f4f4f4;transform-origin:0 50%;transform:scaleX(0);transition:transform 1.4s var(--ease);transition-delay:var(--d,0s)}
+.step.in .pr i{transform:none}
+.step h3{margin:calc(var(--u)*60) 0 calc(var(--u)*10);font:500 calc(var(--u)*30)/1 var(--ui);letter-spacing:-.04em}
+.step p{margin:0;font:500 calc(var(--u)*14)/1.5 var(--ui);color:var(--mute)}
+
+/* ---------- pay ---------- */
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*12);margin-top:calc(var(--u)*40)}
+.pc{border:1px solid var(--hair2);border-radius:calc(var(--u)*10);padding:calc(var(--u)*26) calc(var(--u)*24) calc(var(--u)*30);min-height:calc(var(--u)*230);display:flex;flex-direction:column}
+.pc .n{font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;color:var(--grey);margin-bottom:auto}
+.pc h3{margin:calc(var(--u)*50) 0 calc(var(--u)*10);font:500 calc(var(--u)*26)/1.05 var(--ui);letter-spacing:-.04em}
+.pc p{margin:0;font:500 calc(var(--u)*14)/1.5 var(--ui);color:var(--mute)}
+.pc.us{background:#d6d6d6;color:var(--ink);border-color:#d6d6d6}
+.pc.us p{color:#4a4a4a}.pc.us .n{color:#6a6a6a}
+.pay-how{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u)*40);margin-top:calc(var(--u)*40);padding-top:calc(var(--u)*30);border-top:1px solid var(--hair)}
+.pay-how b{display:block;font:500 calc(var(--u)*16)/1.3 var(--ui);margin-bottom:calc(var(--u)*8)}
+.pay-how p{margin:0;font:500 calc(var(--u)*14)/1.5 var(--ui);color:var(--mute)}
+.pay-note{margin:calc(var(--u)*34) 0 0;font:600 calc(var(--u)*12)/1.6 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);max-width:calc(var(--u)*820)}
+
+/* ---------- work ---------- */
+.proj{display:grid;grid-template-columns:repeat(5,1fr);gap:calc(var(--u)*10);margin-top:calc(var(--u)*40)}
+.pj{display:block;border-radius:calc(var(--u)*10);overflow:hidden;border:1px solid var(--hair);background:#0b0b0b;transition:transform .5s var(--ease)}
+.pj:hover{transform:translateY(calc(var(--u)*-6))}
+.pj .shot{position:relative;aspect-ratio:16/11;overflow:hidden}
+.pj img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.pj .go{position:absolute;right:calc(var(--u)*12);top:calc(var(--u)*12);width:calc(var(--u)*36);height:calc(var(--u)*36);border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.4);transition:transform .5s var(--ease)}
+.pj .go svg{width:calc(var(--u)*13);height:calc(var(--u)*13)}
+.pj:hover .go{transform:rotate(45deg)}
+.pj .meta{padding:calc(var(--u)*14) calc(var(--u)*14) calc(var(--u)*18)}
+.pj small{font:600 calc(var(--u)*10)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.pj h3{margin:calc(var(--u)*10) 0 calc(var(--u)*6);font:500 calc(var(--u)*17)/1.15 var(--ui);letter-spacing:-.035em}
+.pj p{margin:0;font:500 calc(var(--u)*12.5)/1.45 var(--ui);color:var(--mute)}
+
+/* ---------- faq ---------- */
+.faq{display:grid;grid-template-columns:calc(var(--u)*420) 1fr;gap:calc(var(--u)*60)}
+.faq .h2{margin-top:calc(var(--u)*22)}
+.qa{border-top:1px solid var(--hair)}
+.qa:last-child{border-bottom:1px solid var(--hair)}
+.qa button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*20);padding:calc(var(--u)*24) calc(var(--u)*2);font:500 calc(var(--u)*19)/1.35 var(--ui);letter-spacing:-.02em}
+.qa button:focus-visible{outline:1px solid #f4f4f4;outline-offset:4px}
+.qa .pl{width:calc(var(--u)*30);height:calc(var(--u)*30);flex:none;border-radius:50%;border:1px solid var(--hair2);position:relative;transition:background .3s,transform .5s var(--ease)}
+.qa .pl:before,.qa .pl:after{content:'';position:absolute;left:calc(var(--u)*9);right:calc(var(--u)*9);top:50%;height:1.5px;margin-top:-.75px;background:currentColor}
+.qa .pl:after{transform:rotate(90deg);transition:transform .45s var(--ease)}
+.qa.open .pl{background:#f4f4f4;color:#000;transform:rotate(180deg)}
+.qa.open .pl:after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0;padding:0 calc(var(--u)*60) calc(var(--u)*26) calc(var(--u)*2);font:500 calc(var(--u)*15)/1.55 var(--ui);color:var(--mute)}
+.qa.open .ans{grid-template-rows:1fr}
+
+/* ---------- final + footer ---------- */
+.final{padding:0 0 calc(var(--u)*120)}
+.cta{position:relative;width:calc(var(--u)*1302);margin:0 auto;border-radius:calc(var(--u)*14);background:var(--paper);color:var(--ink);padding:calc(var(--u)*80) calc(var(--u)*60) calc(var(--u)*70);overflow:hidden;text-align:center}
+.cta .eyebrow{justify-content:center;color:#5c5c5c}
+.cta .eyebrow:before{background:var(--ink)}
+.cta h2{margin:calc(var(--u)*26) auto 0;font-family:var(--disp);font-stretch:104%;font-variation-settings:'wdth' 104;font-weight:640;font-size:calc(var(--u)*78);line-height:.9;letter-spacing:-.055em;text-transform:uppercase}
+.cta h2 em{font-style:normal;color:#8a8a8a}
+.cta p{margin:calc(var(--u)*26) auto calc(var(--u)*34);max-width:calc(var(--u)*480);font:500 calc(var(--u)*16)/1.5 var(--ui);color:#3a3a3a}
+.cta .pair{display:flex;gap:calc(var(--u)*10);justify-content:center;flex-wrap:wrap}
+.cta .btn.line{color:var(--ink);border-color:rgba(0,0,0,.25)}
+.cta .who{margin-top:calc(var(--u)*26);font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;text-transform:uppercase;color:#6a6a6a}
+footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u)*46)}
+.ft{width:calc(var(--u)*1302);margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:calc(var(--u)*40);font:500 calc(var(--u)*14)/1.5 var(--ui);color:var(--mute)}
+.ft .lg{display:flex;align-items:center;gap:calc(var(--u)*12);color:var(--text);font:600 calc(var(--u)*20)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;margin-bottom:calc(var(--u)*14)}
+.ft .lg i{width:calc(var(--u)*30);height:calc(var(--u)*30);border-radius:calc(var(--u)*8);background:#f4f4f4;color:#000;display:grid;place-items:center;font:700 calc(var(--u)*15)/1 var(--ui);font-style:normal}
+.ft h4{margin:0 0 calc(var(--u)*14);font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.ft a{display:block;margin-bottom:calc(var(--u)*8);transition:color .3s}
+.ft a:hover{color:var(--text)}
+.fb{width:calc(var(--u)*1302);margin:calc(var(--u)*40) auto 0;padding-top:calc(var(--u)*20);border-top:1px solid var(--hair);display:flex;justify-content:space-between;font:600 calc(var(--u)*12)/1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:.05em;text-transform:uppercase;color:var(--grey)}
+
+/* reveal */
+.rv{opacity:0;translate:0 24px;transition:opacity 1s var(--ease),translate 1.1s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;translate:0 0}
+
+
+/* smooth motion */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;background:#fff;mix-blend-mode:difference;transform-origin:0 50%;transform:scaleX(0);z-index:60;pointer-events:none}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.w>span{display:inline-block;transform:translateY(110%) rotate(3deg);transform-origin:0 100%;transition:transform 1.15s var(--ease);transition-delay:calc(var(--wd,0s) + var(--d,0s))}
+.in .w>span{transform:none}
+.pj .shot{clip-path:inset(100% 0 0 0);transition:clip-path 1.3s cubic-bezier(.77,0,.18,1);transition-delay:calc(var(--d,0s) + .1s)}
+.pj.in .shot{clip-path:inset(0)}
+.sv:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(calc(var(--u)*320) circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.07),transparent 60%);opacity:0;transition:opacity .5s}
+.sv:hover:before{opacity:1}
+.btn{will-change:transform}
+
+
+/* nohassle.ru motion set */
+.marq{overflow:hidden;padding:calc(var(--u)*26) 0;border-bottom:1px solid var(--hair);white-space:nowrap}
+.marq-in{display:inline-flex;gap:calc(var(--u)*56);will-change:transform}
+.marq-in span{font:600 calc(var(--u)*72)/1.1 var(--disp);font-stretch:125%;font-variation-settings:'wdth' 125;letter-spacing:-.01em;text-transform:uppercase;color:#2a2a2a;display:inline-flex;align-items:center;gap:calc(var(--u)*56);transition:color .4s}
+.marq-in span:hover{color:#f4f4f4}
+.marq-in span:after{content:'';width:calc(var(--u)*12);height:calc(var(--u)*12);border-radius:50%;background:#f4f4f4}
+.rv-l{translate:-50px 0}
+.rv-r{translate:50px 0}
+.rv-l.in,.rv-r.in{translate:0 0}
+.pj img{transform:scale(1.18);transition:transform 1.6s var(--ease)}
+.pj.in img{transform:scale(1)}
+.pj.in:hover img{transform:scale(1.045)}
+[data-spot]{--mx:50%;--my:50%}
+.spot{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;background:radial-gradient(600px circle at var(--mx) var(--my),rgba(255,255,255,.07),transparent 60%);opacity:0;transition:opacity .6s}
+[data-spot]:hover .spot{opacity:1}
+[data-speed]{will-change:translate}
+.eyebrow:before{animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.sticky-cta{display:none}
+@media (max-width:760px){
+  .marq{padding:calc(var(--u)*18) 0}
+  .marq-in,.marq-in span{gap:calc(var(--u)*22)}
+  .marq-in span{font-size:calc(var(--u)*40)}
+  .marq-in span:after{width:calc(var(--u)*8);height:calc(var(--u)*8)}
+  .rv-l,.rv-r{translate:0 30px}
+  footer{padding-bottom:110px}
+  .sticky-cta{display:flex;position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:55;height:58px;border-radius:999px;background:#f4f4f4;color:#111;align-items:center;justify-content:space-between;padding:0 8px 0 24px;font:600 15px/1 var(--ui);box-shadow:0 18px 40px -14px rgba(0,0,0,.6),0 0 0 1px rgba(0,0,0,.06);transform:translateY(140%);transition:transform .6s var(--ease)}
+  .sticky-cta.show{transform:none}
+  .sticky-cta i{width:44px;height:44px;border-radius:50%;background:#111;display:grid;place-items:center}
+}
+
+
+/* language picker */
+.lang{left:auto;right:calc(var(--u)*57);top:calc(var(--u)*63);height:calc(var(--u)*46);padding:0 calc(var(--u)*12) 0 calc(var(--u)*14);border-radius:999px;background:#fff;display:flex;align-items:center;gap:calc(var(--u)*6);color:var(--ink);transition:transform .3s var(--ease),box-shadow .3s}
+.lang:hover{transform:translateY(-1px);box-shadow:0 10px 24px -14px rgba(0,0,0,.4)}
+.lang svg{width:calc(var(--u)*16);height:calc(var(--u)*16);flex:none}
+.lang select{appearance:none;-webkit-appearance:none;border:0;outline:0;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right center/calc(var(--u)*10) auto;font:600 calc(var(--u)*13)/1 var(--ui);letter-spacing:.04em;color:var(--ink);cursor:pointer;padding:calc(var(--u)*6) calc(var(--u)*16) calc(var(--u)*6) 0}
+.lang select:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+.lang option{color:#111;background:#fff}
+
+/* ---------- phone ---------- */
+@media (max-width:760px){
+  :root{--u:calc(100vw / 390)}
+  .art{width:100%;height:auto;display:grid;grid-template-columns:1fr auto;align-items:center;padding:calc(var(--u)*18) calc(var(--u)*16) calc(var(--u)*34)}
+  .art>*{position:relative;left:auto;top:auto;right:auto;grid-column:1/-1}
+  .nav{grid-column:1;justify-self:start;order:1;height:calc(var(--u)*44)}
+  .nav a{height:calc(var(--u)*36);padding:0 calc(var(--u)*12);font-size:calc(var(--u)*13)}
+  .nav .slider{height:calc(var(--u)*36)}
+  .contact{grid-column:2;order:2;width:calc(var(--u)*40);height:calc(var(--u)*40);padding:0}
+  .contact .lbl{display:none}
+  .date{display:none}
+  .title{order:3;margin-top:calc(var(--u)*46);font-size:calc(var(--u)*60)}
+  .yr{display:none}
+  .lang{order:4;position:relative;left:auto;right:auto;top:auto;justify-self:start;margin-top:calc(var(--u)*18);height:calc(var(--u)*40)}
+  .about{order:5;width:auto;margin-top:calc(var(--u)*26)}
+  .book{order:6;justify-self:start;margin-top:calc(var(--u)*20)}
+  .stage{order:7;position:relative;inset:auto;height:calc(var(--u)*470);margin:calc(var(--u)*30) calc(var(--u)*-16) 0;overflow:hidden}
+  .photo{left:0;top:calc(var(--u)*10);width:100%;height:calc(var(--u)*300)}
+  .plate{left:50%;top:calc(var(--u)*318);width:calc(var(--u)*300);height:calc(var(--u)*62);margin-left:calc(var(--u)*-150);padding:0 calc(var(--u)*16)}
+  .plate b{font-size:calc(var(--u)*20)}
+  .plate .nh{width:calc(var(--u)*30);height:calc(var(--u)*30);font-size:calc(var(--u)*15)}
+  .logos{left:calc(var(--u)*20);right:calc(var(--u)*20);width:auto;top:auto;bottom:calc(var(--u)*22)}
+  .growth{order:8;justify-self:start;margin-top:calc(var(--u)*26)}
+  .avail{display:none}
+  .frame{order:9;width:auto;height:calc(var(--u)*200);margin-top:calc(var(--u)*18)}
+  .bar{padding:0 calc(var(--u)*16);font-size:calc(var(--u)*11);height:calc(var(--u)*84)}
+  .bar .mid span{display:none}
+  .statement{padding:calc(var(--u)*100) 0 calc(var(--u)*120)}
+  .stmt{width:auto;max-width:none;padding:0 calc(var(--u)*16);font-size:calc(var(--u)*24)}
+  .stmt br{display:none}
+  .sub{margin-top:calc(var(--u)*70);padding:0 calc(var(--u)*16);font-size:calc(var(--u)*18)}
+  .sub br{display:none}
+  .sec{padding:0 calc(var(--u)*16) calc(var(--u)*90)}
+  .wrap,.panel,.cta,.ft,.fb{width:100%}
+  .head{grid-template-columns:1fr;gap:calc(var(--u)*16);padding-bottom:calc(var(--u)*26)}
+  .head p{text-align:left}
+  .h2,.tl h2{font-size:calc(var(--u)*40)}
+  .panel{height:auto;padding:calc(var(--u)*28) calc(var(--u)*18) calc(var(--u)*18)}
+  .tl{position:relative;left:0;top:0;width:auto}
+  .tile{width:calc(var(--u)*68);height:calc(var(--u)*68)}
+  .tile svg{width:calc(var(--u)*26);height:calc(var(--u)*26)}
+  .tile.t1{left:auto;right:calc(var(--u)*18);top:calc(var(--u)*26)}
+  .tile.t2{display:none}
+  .cards{position:relative;left:0;top:0;margin-top:calc(var(--u)*26);flex-direction:column}
+  .tc.av,.tc.aw,.tc.pt{width:100%}
+  .tc.pt{height:calc(var(--u)*260)}
+  .avs{justify-content:space-between}
+  .svc{grid-template-columns:1fr 1fr}
+  .sv{min-height:0;padding:calc(var(--u)*20) calc(var(--u)*14) calc(var(--u)*22)}
+  .sv h3{margin:calc(var(--u)*28) 0 calc(var(--u)*10);font-size:calc(var(--u)*19)}
+  .sv ul{font-size:calc(var(--u)*12.5)}
+  .steps,.pay{grid-template-columns:1fr}
+  .proj{grid-template-columns:1fr 1fr}
+  .step,.pc{min-height:0}
+  .step h3,.pc h3{margin-top:calc(var(--u)*34)}
+  .pay-how{grid-template-columns:1fr;gap:calc(var(--u)*22)}
+  .faq{grid-template-columns:1fr;gap:calc(var(--u)*20)}
+  .qa button{font-size:calc(var(--u)*16.5)}
+  .qa .ans p{padding-right:calc(var(--u)*10)}
+  .final{padding:0 calc(var(--u)*16) calc(var(--u)*80)}
+  .cta{padding:calc(var(--u)*56) calc(var(--u)*20) calc(var(--u)*44)}
+  .cta h2{font-size:calc(var(--u)*48)}
+  .ft{grid-template-columns:1fr;padding:0 calc(var(--u)*16)}
+  .fb{flex-direction:column;gap:calc(var(--u)*10);padding:calc(var(--u)*20) calc(var(--u)*16) 0;margin-top:calc(var(--u)*30)}
+}
+/* ?static=1 turns all motion off */
+@media all{
+  html.still *,html.still *:before,html.still *:after{transition:none!important;animation:none!important}
+  html.still .rv{opacity:1;translate:none}
+  html.still .step .pr i{transform:none}
+}
+</style>
+
+<link href="https://igorrodionov427-creator.github.io/usa/pl/" rel="canonical"/>
+<link href="https://igorrodionov427-creator.github.io/usa/" hreflang="en" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/ru/" hreflang="ru" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/de/" hreflang="de" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/fr/" hreflang="fr" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/es/" hreflang="es" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/it/" hreflang="it" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/pl/" hreflang="pl" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/sr/" hreflang="sr" rel="alternate"/>
+<link href="https://igorrodionov427-creator.github.io/usa/" hreflang="x-default" rel="alternate"/>
+<meta content="website" property="og:type"/>
+<meta content="Apolline" property="og:site_name"/>
+<meta content="Apolline — przejmujemy rutynę" property="og:title"/>
+<meta content="Social media, wideo, mailing, boty, reklama i strony — jeden zespół zamiast pięciu wykonawców. Wysyłasz zadanie, my dowozimy całość." property="og:description"/>
+<meta content="https://igorrodionov427-creator.github.io/usa/pl/" property="og:url"/>
+<meta content="https://igorrodionov427-creator.github.io/usa/media/og.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="pl_PL" property="og:locale"/>
+<meta content="en_US" property="og:locale:alternate"/>
+<meta content="ru_RU" property="og:locale:alternate"/>
+<meta content="de_DE" property="og:locale:alternate"/>
+<meta content="fr_FR" property="og:locale:alternate"/>
+<meta content="es_ES" property="og:locale:alternate"/>
+<meta content="it_IT" property="og:locale:alternate"/>
+<meta content="sr_RS" property="og:locale:alternate"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Apolline — przejmujemy rutynę" name="twitter:title"/>
+<meta content="Social media, wideo, mailing, boty, reklama i strony — jeden zespół zamiast pięciu wykonawców. Wysyłasz zadanie, my dowozimy całość." name="twitter:description"/>
+<meta content="https://igorrodionov427-creator.github.io/usa/media/og.jpg" name="twitter:image"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "ProfessionalService", "@id": "https://igorrodionov427-creator.github.io/usa/#org", "name": "Apolline", "url": "https://igorrodionov427-creator.github.io/usa/pl/", "image": "https://igorrodionov427-creator.github.io/usa/media/og.jpg", "logo": "https://igorrodionov427-creator.github.io/usa/media/og.jpg", "description": "Social media, wideo, mailing, boty, reklama i strony — jeden zespół zamiast pięciu wykonawców. Wysyłasz zadanie, my dowozimy całość.", "areaServed": "Worldwide", "sameAs": ["https://t.me/nohassle_ru"], "availableLanguage": ["en-US", "ru-RU", "de-DE", "fr-FR", "es-ES", "it-IT", "pl-PL", "sr-RS"], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Usługi", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Social media", "description": "Plan treści, Posty i karuzele, Relacje i Reels, Opisy i hashtagi, Oprawa profilu, Publikacja według harmonogramu, Odpowiedzi na komentarze"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wideo", "description": "Pomysły i scenariusze, Montaż z Twoich zdjęć i nagrań, Animacja, Lektor, Napisy i muzyka, TikTok, Reels, Shorts"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reklama", "description": "Zakup reklam na kanałach Telegram, Reklama u influencerów, Płatne kampanie w social mediach, Kreacje i banery, Raporty z leadów"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Marketplace i ogłoszenia", "description": "Dziesiątki ogłoszeń dziennie, Masowy import przez XML/CSV, Teksty sprzedażowe, Obróbka zdjęć, Aktualizacja cen, Karty produktów"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Klienci i zapytania", "description": "Obsługa zapytań, Korespondencja w komunikatorach, Przypomnienia i zbieranie opinii"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mailingi", "description": "WhatsApp i Telegram, E-mail i SMS, Promocje i przypomnienia, Segmentacja bazy, Raport odpowiedzi"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Boty i automatyzacja", "description": "Chatbot do zapytań, Bot do rezerwacji, Autoodpowiedzi, Powiadomienia o zamówieniach, Integracja CRM, arkuszy i komunikatorów, Automatyczne raporty"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Strony", "description": "Zmiany tekstów i cen, Redesign — ładniej i nowocześniej, Strona lub landing od zera, Formularze i rezerwacje online, Wersja mobilna, Analityka"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Prezentacje i dokumenty", "description": "Prezentacja firmy, Oferty handlowe, Katalogi i cenniki PDF, Szablony pism i umów, Arkusze i raporty"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Copywriting", "description": "Teksty na stronę, Opisy usług i produktów, Posty i artykuły, Maile do klientów"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Design", "description": "Logo i identyfikacja wizualna, Banery i kreacje, Obróbka zdjęć, Szablony do social mediów"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Narzędzia AI", "description": "Teksty i grafiki z AI, Lektor AI, Wideo AI, Wdrożenie AI w procesy, Szkolenie zespołu"}}]}}, {"@type": "WebSite", "@id": "https://igorrodionov427-creator.github.io/usa/#site", "name": "Apolline", "url": "https://igorrodionov427-creator.github.io/usa/", "inLanguage": "pl-PL", "publisher": {"@id": "https://igorrodionov427-creator.github.io/usa/#org"}}, {"@type": "FAQPage", "inLanguage": "pl-PL", "mainEntity": [{"@type": "Question", "name": "Ile to kosztuje?", "acceptedAnswer": {"@type": "Answer", "text": "To zależy od zadania i zakresu. Pierwsze zadanie omawiamy za darmo i podajemy cenę przed startem — bez niespodzianek."}}, {"@type": "Question", "name": "Czy mogę płacić tylko za efekty?", "acceptedAnswer": {"@type": "Answer", "text": "Tak. Możemy pracować za procent od sprzedaży: płacisz dopiero po otrzymaniu zamówienia od klienta, którego przyprowadziliśmy. Każde takie zamówienie oznaczamy sami, rozliczamy się raz w miesiącu i dopiero wtedy wystawiamy fakturę. Brak zamówień — brak opłaty."}}, {"@type": "Question", "name": "Czy mogę wziąć tylko jedną usługę?", "acceptedAnswer": {"@type": "Answer", "text": "Tak. Jedno zadanie albo wszystko naraz — jak Ci wygodnie. Zacznij od małego i zobacz, jak nam się współpracuje."}}, {"@type": "Question", "name": "Co muszę przygotować?", "acceptedAnswer": {"@type": "Answer", "text": "Nic szczególnego. Wystarczy opisać zadanie w kilku słowach — głosówką lub tekstem. Pytania doprecyzowujące zadamy sami."}}, {"@type": "Question", "name": "Jak szybko zaczniecie?", "acceptedAnswer": {"@type": "Answer", "text": "Terminy podajemy zaraz po omówieniu zadania, przed startem. Pilne zadania też bierzemy, jeśli zdążymy zrobić je dobrze."}}, {"@type": "Question", "name": "Z kim będę rozmawiać?", "acceptedAnswer": {"@type": "Answer", "text": "Bezpośrednio z nami — na czacie, przez telefon lub na wideo, jak Ci wygodnie. Bez łańcucha managerów — rozmawiasz z tymi, którzy wykonują pracę."}}, {"@type": "Question", "name": "Czy pracujecie z małymi firmami?", "acceptedAnswer": {"@type": "Answer", "text": "Tak, to nasi główni klienci: producenci, sklepy, specjaliści i agencje, którym brakuje czasu lub ludzi na marketing i rutynę."}}]}]}</script>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<section class="hero">
+<div class="art">
+<div class="stage">
+<div class="photo" id="photo"><img alt="Czarna rzeźba na jasnoszarym tle" decoding="async" fetchpriority="high" height="667" id="photoImg" src="../media/knot.webp" width="1000"/></div>
+<div class="plate" data-in="">
+<span class="mk"><i class="nh">A</i><b>APOLLINE</b></span>
+<span aria-hidden="true" class="menu"><i></i><i></i></span>
+</div>
+<div class="logos" data-in="">
+<span class="lg1">MAING</span>
+<span class="lg2"><svg aria-hidden="true" viewbox="0 0 16 16"><path d="M2 3 8 13 14 3" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.6"></path></svg>Velion</span>
+<span class="lg3"><svg aria-hidden="true" viewbox="0 0 16 16"><circle cx="8" cy="8" fill="none" r="6" stroke="currentColor" stroke-width="1.6"></circle><path d="M5 8h6" stroke="currentColor" stroke-width="1.6"></path></svg>EgoLab</span>
+</div>
+</div>
+<nav aria-label="Main" class="nav" id="nav">
+<span class="slider" id="slider"></span>
+<a class="on" href="#">Start</a><a href="#services">Usługi</a><a href="#how">Proces</a><a href="#work">Projekty</a>
+</nav>
+<label class="lang" data-in=""><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"></path></svg><select aria-label="Language" id="langSel"><option value="en">EN</option><option value="ru">RU</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option><option value="it">IT</option><option value="pl">PL</option><option value="sr">SR</option></select></label>
+<div class="date" data-in="">Pierwsze zadanie — rozmowa gratis<b>Telefon, wideo czy czat — jak wolisz</b></div>
+<a aria-label="Message us on Telegram" class="btn contact" data-in="" href="https://t.me/nohassle_ru" rel="noopener" target="_blank"><span class="lbl">Napisz do nas</span> <span class="ar">↗</span></a>
+<h1 class="title"><span class="ln"><span>Apolline.</span></span></h1>
+<div class="about" data-in="">
+<div class="lb"><i></i>(O NAS)</div>
+<p>Social media, wideo, reklama, boty i strony — jeden zespół zamiast pięciu wykonawców.</p>
+</div>
+<a class="btn book" data-in="" href="#contact">Omów zadanie <span class="ar">↗</span></a>
+<div class="frame" data-in="">
+<div class="card-d">
+<div class="big"><span data-count="12">12</span></div>
+<small>Obszarów</small>
+<div class="marks">
+<span><svg viewbox="0 0 10 10"><rect fill="none" height="8" rx="2.4" stroke="currentColor" stroke-width="1.3" width="8" x="1" y="1"></rect><circle cx="5" cy="5" fill="none" r="1.8" stroke="currentColor" stroke-width="1.3"></circle></svg>Social</span>
+<span><svg viewbox="0 0 10 10"><path d="M2.5 1.5v7L8.5 5Z" fill="currentColor"></path></svg>Wideo</span>
+<span><svg viewbox="0 0 10 10"><path d="M1 6V4l6-3v8Z" fill="currentColor"></path></svg>Reklama</span>
+<span><svg viewbox="0 0 10 10"><rect fill="none" height="5.5" rx="1.5" stroke="currentColor" stroke-width="1.3" width="7" x="1.5" y="3"></rect><path d="M5 1v2" stroke="currentColor" stroke-width="1.3"></path></svg>Boty</span>
+<span><svg viewbox="0 0 10 10"><circle cx="5" cy="5" fill="none" r="4" stroke="currentColor" stroke-width="1.3"></circle><path d="M1 5h8" stroke="currentColor" stroke-width="1.3"></path></svg>Strony</span>
+<span><svg viewbox="0 0 10 10"><path d="M5 .5c.3 2.4 1.2 3.9 4 4.5-2.8.6-3.7 2.1-4 4.5-.3-2.4-1.2-3.9-4-4.5 2.8-.6 3.7-2.1 4-4.5Z" fill="currentColor"></path></svg>AI</span>
+</div>
+<a class="bar-b" href="#services">Wszystkie usługi <span>↗</span></a>
+</div>
+</div>
+<div class="growth glass" data-in="">Płatność za efekty <i><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24"><path d="M5 12.5 10 17 19 7"></path></svg></i></div>
+<div class="avail" data-in="">Ty prowadzisz biznes.<br/><span><i></i>Resztą zajmiemy się my.</span></div>
+</div>
+</section>
+<div class="bar">
+<span>EST <span class="g">2026</span></span>
+<span class="mid"><span>PRZEWIŃ</span><i><svg fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></i></span>
+<span class="r g">ROZMOWY · WIDEO · CZAT</span>
+</div>
+<div aria-hidden="true" class="marq"><div class="marq-in" id="marq"></div></div>
+<section class="statement" id="statement">
+<p class="stmt" id="stmt">Twój biznes powinien działać w Twoim rytmie, <br/>a nie postów, montażu i niekończących się czatów. <br/>Bierzemy rutynę na siebie — social, wideo, <br/>reklamę, mailing, boty i strony — <br/>żebyś mógł skupić się na swojej pracy.</p>
+<p class="sub">Jeden zespół zamiast pięciu wykonawców,<br/>jeden czat na wszystko. <em>Rutyna jest nasza. Ból głowy też.</em></p>
+</section>
+<section class="sec" id="why">
+<div class="panel" data-scrub="" data-spot="" id="panel">
+<div class="tl">
+<h2>Jeden zespół <br/>zamiast <br/>pięciu <br/>wykonawców</h2>
+<p>Specjalista od social mediów, montażysta, media buyer, programista i grafik to pięć czatów, pięć faktur i pięć terminów. U nas — jeden czat i jeden zespół odpowiedzialny za wynik.</p>
+</div>
+<div class="cards">
+<div class="tc av">
+<div class="avs" id="avs"></div>
+<div class="big"><span data-count2="12">12</span></div>
+<div class="cap">Obszarów · dziesiątki usług</div>
+</div>
+<div class="tc aw" id="awards">
+<div class="big">$0</div>
+<div class="cap">Z góry przy rozliczeniu procentowym</div>
+<svg aria-label="Pay for results badge" class="badge" viewbox="0 0 150 118">
+<g fill="none" stroke="#f4f4f4" stroke-linecap="round" stroke-width="1.6"><path d="M44 104C22 92 14 66 22 38"></path><path d="M106 104c22-12 30-38 22-66"></path></g>
+<g fill="#f4f4f4">
+<ellipse cx="21" cy="46" rx="3.2" ry="7" transform="rotate(-20 21 46)"></ellipse><ellipse cx="19" cy="60" rx="3.2" ry="7" transform="rotate(-35 19 60)"></ellipse><ellipse cx="22" cy="74" rx="3.2" ry="7" transform="rotate(-50 22 74)"></ellipse><ellipse cx="29" cy="87" rx="3.2" ry="7" transform="rotate(-62 29 87)"></ellipse><ellipse cx="39" cy="97" rx="3.2" ry="7" transform="rotate(-75 39 97)"></ellipse>
+<ellipse cx="129" cy="46" rx="3.2" ry="7" transform="rotate(20 129 46)"></ellipse><ellipse cx="131" cy="60" rx="3.2" ry="7" transform="rotate(35 131 60)"></ellipse><ellipse cx="128" cy="74" rx="3.2" ry="7" transform="rotate(50 128 74)"></ellipse><ellipse cx="121" cy="87" rx="3.2" ry="7" transform="rotate(62 121 87)"></ellipse><ellipse cx="111" cy="97" rx="3.2" ry="7" transform="rotate(75 111 97)"></ellipse>
+</g>
+<g fill="#f4f4f4" font-family="Archivo, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2" style="font-stretch:125%" text-anchor="middle">
+<text x="75" y="44">PAY</text><text x="75" y="60">FOR</text><text x="75" y="76">RESULTS</text>
+</g>
+<text fill="#8d8d8d" font-family="Inter Tight, sans-serif" font-size="9" font-weight="500" letter-spacing="2" text-anchor="middle" x="75" y="96">NO ORDERS · NO FEE</text>
+</svg>
+<div class="note">Płacisz niewielki procent dopiero po<br/>zamówieniu od klienta, którego przyprowadziliśmy.</div>
+</div>
+<div class="tc pt"><img alt="Side profile in a white t-shirt on a blue-grey gradient" decoding="async" height="652" loading="lazy" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/addecc7d-666f-4342-8290-ed7f7cbbffd6.webp" width="400"/></div>
+</div>
+</div>
+</section>
+<section class="sec" id="services">
+<div class="wrap">
+<div class="head rv">
+<div><div class="eyebrow">12 obszarów · dziesiątki usług</div><h2 class="h2">Wszystko, co zabiera <br/><em>Twój czas.</em></h2></div>
+<p>Jedno zadanie albo wszystko naraz — Ty wybierasz. Czegoś brakuje na liście? Po prostu napisz.</p>
+</div>
+<div class="svc" data-scrub="" id="svc">
+<div class="sv rv" style="--d:0.00s"><div class="n">01<i data-ic="social"></i></div><h3>Social media</h3><ul><li>Plan treści</li><li>Posty i karuzele</li><li>Relacje i Reels</li><li>Opisy i hashtagi</li><li>Oprawa profilu</li><li>Publikacja według harmonogramu</li><li>Odpowiedzi na komentarze</li></ul></div>
+<div class="sv rv" style="--d:0.06s"><div class="n">02<i data-ic="video"></i></div><h3>Wideo</h3><ul><li>Pomysły i scenariusze</li><li>Montaż z Twoich zdjęć i nagrań</li><li>Animacja</li><li>Lektor</li><li>Napisy i muzyka</li><li>TikTok, Reels, Shorts</li></ul></div>
+<div class="sv rv" style="--d:0.12s"><div class="n">03<i data-ic="ads"></i></div><h3>Reklama</h3><ul><li>Zakup reklam na kanałach Telegram</li><li>Reklama u influencerów</li><li>Płatne kampanie w social mediach</li><li>Kreacje i banery</li><li>Raporty z leadów</li></ul></div>
+<div class="sv rv" style="--d:0.18s"><div class="n">04<i data-ic="market"></i></div><h3>Marketplace i ogłoszenia</h3><ul><li>Dziesiątki ogłoszeń dziennie</li><li>Masowy import przez XML/CSV</li><li>Teksty sprzedażowe</li><li>Obróbka zdjęć</li><li>Aktualizacja cen</li><li>Karty produktów</li></ul></div>
+<div class="sv rv" style="--d:0.00s"><div class="n">05<i data-ic="chat"></i></div><h3>Klienci i zapytania</h3><ul><li>Obsługa zapytań</li><li>Korespondencja w komunikatorach</li><li>Przypomnienia i zbieranie opinii</li></ul></div>
+<div class="sv rv" style="--d:0.06s"><div class="n">06<i data-ic="mail"></i></div><h3>Mailingi</h3><ul><li>WhatsApp i Telegram</li><li>E-mail i SMS</li><li>Promocje i przypomnienia</li><li>Segmentacja bazy</li><li>Raport odpowiedzi</li></ul></div>
+<div class="sv rv" style="--d:0.12s"><div class="n">07<i data-ic="bot"></i></div><h3>Boty i automatyzacja</h3><ul><li>Chatbot do zapytań</li><li>Bot do rezerwacji</li><li>Autoodpowiedzi</li><li>Powiadomienia o zamówieniach</li><li>Integracja CRM, arkuszy i komunikatorów</li><li>Automatyczne raporty</li></ul></div>
+<div class="sv rv" style="--d:0.18s"><div class="n">08<i data-ic="site"></i></div><h3>Strony</h3><ul><li>Zmiany tekstów i cen</li><li>Redesign — ładniej i nowocześniej</li><li>Strona lub landing od zera</li><li>Formularze i rezerwacje online</li><li>Wersja mobilna</li><li>Analityka</li></ul></div>
+<div class="sv rv" style="--d:0.00s"><div class="n">09<i data-ic="deck"></i></div><h3>Prezentacje i dokumenty</h3><ul><li>Prezentacja firmy</li><li>Oferty handlowe</li><li>Katalogi i cenniki PDF</li><li>Szablony pism i umów</li><li>Arkusze i raporty</li></ul></div>
+<div class="sv rv" style="--d:0.06s"><div class="n">10<i data-ic="text"></i></div><h3>Copywriting</h3><ul><li>Teksty na stronę</li><li>Opisy usług i produktów</li><li>Posty i artykuły</li><li>Maile do klientów</li></ul></div>
+<div class="sv rv" style="--d:0.12s"><div class="n">11<i data-ic="design"></i></div><h3>Design</h3><ul><li>Logo i identyfikacja wizualna</li><li>Banery i kreacje</li><li>Obróbka zdjęć</li><li>Szablony do social mediów</li></ul></div>
+<div class="sv rv" style="--d:0.18s"><div class="n">12<i data-ic="ai"></i></div><h3>Narzędzia AI</h3><ul><li>Teksty i grafiki z AI</li><li>Lektor AI</li><li>Wideo AI</li><li>Wdrożenie AI w procesy</li><li>Szkolenie zespołu</li></ul></div>
+</div>
+</div>
+</section>
+<section class="sec" id="how">
+<div class="wrap">
+<div class="head rv">
+<div><div class="eyebrow">Jak pracujemy</div><h2 class="h2">Cztery kroki — <br/><em>i zadanie gotowe.</em></h2></div>
+<p>Tekstem, głosówką, telefonicznie lub na spotkaniu — jak Ci wygodnie. Dalej to nasza sprawa: pomysły, realizacja, poprawki i jasny raport.</p>
+</div>
+<div class="steps" data-scrub="">
+<div class="step rv"><div class="n">01</div><div class="pr"><i></i></div><h3>Zadanie</h3><p>Napisz, zadzwoń albo umów rozmowę wideo — wystarczy kilka słów.</p></div>
+<div class="step rv" style="--d:.08s"><div class="n">02</div><div class="pr"><i></i></div><h3>Plan</h3><p>Proponujemy pomysły i warianty. Ty wybierasz — nie robimy nic zbędnego.</p></div>
+<div class="step rv" style="--d:.16s"><div class="n">03</div><div class="pr"><i></i></div><h3>Projekty</h3><p>Robimy, pokazujemy, poprawiamy. Technikę bierzemy na siebie.</p></div>
+<div class="step rv" style="--d:.24s"><div class="n">04</div><div class="pr"><i></i></div><h3>Efekt</h3><p>Gotowe pliki, publikacje według harmonogramu i jasny raport.</p></div>
+</div>
+</div>
+</section>
+<section class="sec" id="pay">
+<div class="wrap">
+<div class="head rv">
+<div><div class="eyebrow">Płatność za efekty</div><h2 class="h2">Płać tylko wtedy, <br/><em>gdy masz zamówienie.</em></h2></div>
+<p>Nie płacisz za posty ani obietnice, tylko z pieniędzy, które już wpłynęły od klientów, których przyprowadziliśmy. Brak zamówień — brak opłaty.</p>
+</div>
+<div class="pay" data-scrub="">
+<div class="pc rv rv-l"><div class="n">01</div><h3>Przyprowadzamy klientów</h3><p>Social media, reklama, marketplace, chatbot i mailing — wszystko, żeby klienci u Ciebie zamawiali.</p></div>
+<div class="pc rv" style="--d:.08s"><div class="n">02</div><h3>Dostajesz zamówienie</h3><p>Klient płaci — pieniądze są Twoje. Do tego momentu nic nam nie jesteś winien.</p></div>
+<div class="pc us rv rv-r" style="--d:.16s"><div class="n">03</div><h3>Płacisz procent</h3><p>Niewielki procent od tego zamówienia. Stawkę ustalamy przed startem i zapisujemy w umowie.</p></div>
+</div>
+<div class="pay-how rv rv-l">
+<div><b>Jak liczymy „nasze” zamówienia</b><p>Każde zamówienie od nas jest oznaczone: osobny numer, kod rabatowy, link lub zapytanie z bota. Nic nie musisz konfigurować.</p></div>
+<div><b>Comiesięczne rozliczenie</b><p>Wysyłamy listę zamówień, które przyprowadziliśmy. Sprawdzamy ją razem i dopiero wtedy wystawiamy fakturę.</p></div>
+<div><b>Przykład</b><p>Zamówienia od naszych klientów na 10 000 $, stawka 10% — płacisz 1000 $ z już otrzymanych pieniędzy.</p></div>
+</div>
+<p class="pay-note rv">Rozliczenie procentowe sprawdza się, gdy prowadzimy kilka obszarów naraz. Dla pojedynczego zadania — stała cena podana przed startem.</p>
+</div>
+</section>
+<section class="sec" id="work">
+<div class="wrap">
+<div class="head rv">
+<div><div class="eyebrow">Realizacje</div><h2 class="h2">Nasze projekty.</h2></div>
+<p>Producenci, sklepy i agencje, którym brakowało czasu lub ludzi na marketing i rutynę.</p>
+</div>
+<div class="proj" data-scrub="">
+<a class="pj rv" href="https://maing.ru/" rel="noopener" target="_blank"><div class="shot"><img alt="maing.ru website" decoding="async" height="562" loading="lazy" src="../media/cases/m_home-900.jpg" width="900"/><span class="go"><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></div>
+<div class="meta"><small>MAING · szyldy</small><h3>Producent szyldów</h3><p>Prowadzimy ich social media, robimy mailingi do bazy klientów i zbudowaliśmy boty do zapytań.</p></div></a>
+<div class="pj rv" style="--d:.08s"><div class="shot"><img alt="MAING exhibition stands" decoding="async" height="562" loading="lazy" src="../media/cases/m_stand-900.jpg" width="900"/></div>
+<div class="meta"><small>MAING · stoiska</small><h3>Zabudowa targowa</h3><p>Prowadzimy ich social media i robimy mailingi do bazy klientów.</p></div></div>
+<a class="pj rv" href="https://velionagency.ru/" rel="noopener" style="--d:.16s" target="_blank"><div class="shot"><img alt="velionagency.ru website" decoding="async" height="588" loading="lazy" src="../media/cases/velion-900.jpg" width="900"/><span class="go"><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></div>
+<div class="meta"><small>Velion · velionagency.ru</small><h3>Agencja botów i agentów AI</h3><p>Zrobiliśmy stronę, skonfigurowaliśmy boty i kupiliśmy reklamy.</p></div></a>
+<a class="pj rv" href="https://egolab.shop/" rel="noopener" style="--d:.24s" target="_blank"><div class="shot"><img alt="egolab.shop website" decoding="async" height="462" loading="lazy" src="../media/cases/egolab-900.jpg" width="900"/><span class="go"><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></div>
+<div class="meta"><small>EgoLab · egolab.shop</small><h3>Sklep z odżywkami</h3><p>Zrobiliśmy stronę i skonfigurowaliśmy social media oraz boty.</p></div></a>
+<a class="pj rv" href="http://nohassle.ru/" rel="noopener" style="--d:.32s" target="_blank"><div class="shot"><img alt="nohassle.ru website" decoding="async" height="588" loading="lazy" src="../media/cases/nohassle-900.jpg" width="900"/><span class="go"><svg fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"></path></svg></span></div>
+<div class="meta"><small>NoHassle · nohassle.ru</small><h3>Agencja marketingowa</h3><p>Zrobiliśmy stronę i bota, prowadzimy social media.</p></div></a>
+</div>
+</div>
+</section>
+<section class="sec" id="faq">
+<div class="wrap faq">
+<div class="rv rv-l"><div class="eyebrow">FAQ</div><h2 class="h2">Zanim zaczniemy — <br/><em>w skrócie.</em></h2></div>
+<div id="qas">
+<div class="qa rv rv-r" style="--d:0.00s"><button aria-expanded="false">Ile to kosztuje?<span class="pl"></span></button><div class="ans"><div><p>To zależy od zadania i zakresu. Pierwsze zadanie omawiamy za darmo i podajemy cenę przed startem — bez niespodzianek.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.05s"><button aria-expanded="false">Czy mogę płacić tylko za efekty?<span class="pl"></span></button><div class="ans"><div><p>Tak. Możemy pracować za procent od sprzedaży: płacisz dopiero po otrzymaniu zamówienia od klienta, którego przyprowadziliśmy. Każde takie zamówienie oznaczamy sami, rozliczamy się raz w miesiącu i dopiero wtedy wystawiamy fakturę. Brak zamówień — brak opłaty.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.10s"><button aria-expanded="false">Czy mogę wziąć tylko jedną usługę?<span class="pl"></span></button><div class="ans"><div><p>Tak. Jedno zadanie albo wszystko naraz — jak Ci wygodnie. Zacznij od małego i zobacz, jak nam się współpracuje.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.15s"><button aria-expanded="false">Co muszę przygotować?<span class="pl"></span></button><div class="ans"><div><p>Nic szczególnego. Wystarczy opisać zadanie w kilku słowach — głosówką lub tekstem. Pytania doprecyzowujące zadamy sami.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.20s"><button aria-expanded="false">Jak szybko zaczniecie?<span class="pl"></span></button><div class="ans"><div><p>Terminy podajemy zaraz po omówieniu zadania, przed startem. Pilne zadania też bierzemy, jeśli zdążymy zrobić je dobrze.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.25s"><button aria-expanded="false">Z kim będę rozmawiać?<span class="pl"></span></button><div class="ans"><div><p>Bezpośrednio z nami — na czacie, przez telefon lub na wideo, jak Ci wygodnie. Bez łańcucha managerów — rozmawiasz z tymi, którzy wykonują pracę.</p></div></div></div>
+<div class="qa rv rv-r" style="--d:0.30s"><button aria-expanded="false">Czy pracujecie z małymi firmami?<span class="pl"></span></button><div class="ans"><div><p>Tak, to nasi główni klienci: producenci, sklepy, specjaliści i agencje, którym brakuje czasu lub ludzi na marketing i rutynę.</p></div></div></div>
+</div>
+</div>
+</section>
+<section class="final" id="contact">
+<div class="cta rv" data-scrub="">
+<div class="eyebrow">Kontakt</div>
+<h2>Oddaj nam zadanie, <br/><em>na które brakuje Ci czasu.</em></h2>
+<p>Pierwsze zadanie omówimy za darmo — jak je zrobić i ile to potrwa.</p>
+<div class="pair">
+<a class="btn" href="https://t.me/NoHassleRuBot?start=lead" rel="noopener" target="_blank">Zgłoszenie w bocie <span class="ar">↗</span></a>
+<a class="btn line" href="https://t.me/nohassle_ru" rel="noopener" target="_blank">Napisz bezpośrednio <span class="ar">↗</span></a>
+</div>
+<div class="who">@nohassle_ru · Igor R. · Alex T.</div>
+</div>
+</section>
+<footer>
+<div class="ft">
+<div><div class="lg"><i>A</i>APOLLINE</div><p style="margin:0;max-width:320px">Social · wideo · reklama · mailing · boty · strony. Bierzemy rutynę, a Ty skupiasz się na biznesie.</p></div>
+<div><h4>Nawigacja</h4><a href="#services">Usługi</a><a href="#how">Jak pracujemy</a><a href="#pay">Płatność za efekty</a><a href="#work">Projekty</a><a href="#faq">FAQ</a></div>
+<div><h4>Kontakt</h4><a href="https://t.me/nohassle_ru" rel="noopener" target="_blank">Telegram · @nohassle_ru</a><a href="https://t.me/NoHassleRuBot?start=lead" rel="noopener" target="_blank">Request bot · @NoHassleRuBot</a></div>
+</div>
+<div class="fb"><span>© 2026 Apolline</span><span>Rozmowy · wideo · czat</span></div>
+</footer>
+<a class="sticky-cta" href="#contact" id="stickyCta">Omów zadanie<i><svg fill="none" height="18" stroke="#f4f4f4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4Z"></path></svg></i></a>
+<script src="../i18n.js"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const Q = new URLSearchParams(location.search), REC = Q.has('rec');
+  // motion is always on; ?static=1 shows the page without it
+  const RM = Q.has('static');
+  applyI18n();
+  // anchors glide to their section (ease in-out); a wheel or touch cancels the glide
+  let anchorRun = 0;
+  const easeIO = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  ['wheel', 'touchstart'].forEach(ev => addEventListener(ev, () => { anchorRun++; }, { passive: true }));
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const id = a.getAttribute('href'), el = id.length > 1 ? document.querySelector(id) : null;
+    if (id.length > 1 && !el) return;
+    e.preventDefault();
+    const from = scrollY, to = el ? el.getBoundingClientRect().top + scrollY : 0, d = to - from;
+    const dur = Math.min(1600, 650 + Math.abs(d) * .2), t0 = performance.now(), run = ++anchorRun;
+    const step = now => { if (run !== anchorRun) return; const k = Math.min(1, (now - t0) / dur);
+      scrollTo({ top: from + d * easeIO(k), behavior: 'instant' }); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+    history.replaceState(null, '', id === '#' ? location.pathname + location.search : location.search + id);
+  });
+  const langSel = $('#langSel'); langSel.value = LANG; langSel.addEventListener('change', () => setLang(langSel.value));
+  if (RM) document.documentElement.classList.add('still');
+  const EASE = 'cubic-bezier(.16,1,.3,1)';
+  const t0 = performance.now();
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  const IC = {
+    social: '<rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/>',
+    video: '<rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5 21 8v8l-5-2.5"/>',
+    ads: '<path d="M4 14V10l11-5v14L4 14Z"/><path d="M7 15v3.5a1.5 1.5 0 0 0 3 0V16"/>',
+    market: '<path d="M4 7h16l-1.5 11a2 2 0 0 1-2 1.7h-9a2 2 0 0 1-2-1.7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/>',
+    chat: '<path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9.5h8M8 12.5h5"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/>',
+    bot: '<rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/>',
+    site: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/>',
+    deck: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8M7 12l3-3 2 2 4-4"/>',
+    text: '<path d="M5 6h14M5 11h14M5 16h9"/>',
+    design: '<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.6-1 1-1.8-.6-.9 0-2.2 1.2-2.2H17a4 4 0 0 0 4-4C21 7 17 3 12 3Z"/><circle cx="8" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="8.5" r="1"/>',
+    ai: '<path d="M12 3.5c.4 3.9 1.9 6.7 5.8 7.6l2.7.6-2.7.6c-3.9.9-5.4 3.7-5.8 7.6-.4-3.9-1.9-6.7-5.8-7.6l-2.7-.6 2.7-.6c3.9-.9 5.4-3.7 5.8-7.6Z"/>',
+  };
+  const svg = (k, c = 'currentColor') => `<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+
+  $$('[data-ic]').forEach(i => { i.innerHTML = svg(i.dataset.ic); });
+
+  // trust card: eight service discs instead of avatars
+  $('#avs').innerHTML = ['social', 'video', 'ads', 'market', 'chat', 'mail', 'bot', 'site'].map(k => `<i>${svg(k, '#f4f4f4')}</i>`).join('');
+
+  $$('#qas .qa').forEach(d => { const b = d.querySelector('button');
+    b.addEventListener('click', () => b.setAttribute('aria-expanded', d.classList.toggle('open'))); });
+
+  // statement: every word is its own span
+  $('#stmt').innerHTML = $('#stmt').innerHTML.split(/<br\s*\/?>/).map(l => l.trim().split(/\s+/).map(w => `<span class="w">${w}</span>`).join(' ')).join('<br>');
+  const words = $$('#stmt .w');
+  const G = 0x6f, W = 0xf4;
+  const fill = p => { // words fill in reading order with a 3-word soft edge
+    const f = p * (words.length + 3);
+    words.forEach((w, i) => { const c = Math.round(G + (W - G) * clamp((f - i) / 3)); w.style.color = `rgb(${c},${c},${c})`; });
+  };
+
+  const count = (el, to, dur = 1400) => {
+    if (RM) { el.textContent = to; return; }
+    const s = performance.now();
+    const f = now => { const k = clamp((now - s) / dur); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); };
+    requestAnimationFrame(f);
+  };
+
+  // nav pill slides to the hovered link
+  const nav = $('#nav'), slider = $('#slider'), links = $$('#nav a');
+  const moveTo = a => { slider.style.left = a.offsetLeft + 'px'; slider.style.width = a.offsetWidth + 'px'; links.forEach(l => l.classList.toggle('on', l === a)); };
+  links.forEach(a => a.addEventListener('pointerenter', () => moveTo(a)));
+  nav.addEventListener('pointerleave', () => moveTo(links[0]));
+  addEventListener('resize', () => moveTo(links[0]));
+  document.fonts.ready.then(() => moveTo(links[0]));
+  moveTo(links[0]);
+
+  let trustDone = false;
+  const trustIn = (dur = 1400) => {
+    if (trustDone) return; trustDone = true;
+    $$('[data-count2]').forEach(el => count(el, +el.dataset.count2, dur));
+    if (!RM) $$('#avs i').forEach((el, i) => el.animate(
+      [{ transform: 'scale(.4)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }],
+      { duration: 700, delay: i * 70, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'both' }));
+  };
+
+  // marquee of service words
+  const mq = $('#marq'), MW = ['Social', 'Video', 'Ads', 'Marketplaces', 'Outreach', 'Bots', 'Websites', 'Design', 'AI'];
+  mq.innerHTML = [...MW, ...MW].map(w => `<span>${T(w)}</span>`).join('');
+
+  // phone: pinned button after the first screen, hidden at the contact block
+  const sc = $('#stickyCta'), heroEl = $('.hero'), finalEl = $('#contact');
+  const scUpd = () => sc.classList.toggle('show', heroEl.getBoundingClientRect().bottom < 80 && finalEl.getBoundingClientRect().top > innerHeight * .85);
+  addEventListener('scroll', scUpd, { passive: true }); scUpd();
+
+  if (RM) { fill(1); $$('.rv').forEach(el => el.classList.add('in')); return; }
+
+  // headings assemble word by word
+  $$('.h2, .tl h2, .cta h2').forEach(h => {
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const w = document.createElement('span'); w.className = 'w';
+          const i = document.createElement('span'); i.textContent = part;
+          w.appendChild(i); frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+    });
+    walk(h);
+    h.querySelectorAll('.w').forEach((w, i) => w.style.setProperty('--wd', i * .05 + 's'));
+  });
+  $('.tl').classList.add('rv');
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15, rootMargin: '0px 0px -6% 0px' });
+  $$('.rv').forEach(el => io.observe(el));
+
+  // load
+  $$('.title .ln>span').forEach((s, i) => s.animate([{ transform: 'translateY(105%)' }, { transform: 'none' }], { duration: 1000, delay: 150 + i * 110, easing: EASE, fill: 'both' }));
+  $('#photoImg').animate([{ transform: 'translateY(40px)', filter: 'blur(14px)', opacity: 0 }, { transform: 'none', filter: 'blur(0)', opacity: 1 }], { duration: 1300, easing: EASE, fill: 'both' });
+  nav.animate([{ transform: 'translateY(-18px)', opacity: 0 }, { transform: 'none', opacity: 1 }], { duration: 800, delay: 100, easing: EASE, fill: 'both' });
+  $$('[data-in]').forEach((el, i) => el.animate([{ translate: '0 14px', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 900, delay: 300 + i * 55, easing: EASE, fill: 'both' }));
+  setTimeout(() => $$('[data-count]').forEach(el => count(el, +el.dataset.count)), 600);
+
+  const photo = $('#photo'), stmtSec = $('#statement'), panel = $('#panel'), awards = $('#awards');
+
+  if (REC) {
+    // recorder: whole page in one frame, so scroll-driven parts run on a timeline
+    let lifted = false;
+    $$('.rv').forEach(el => el.classList.add('in'));
+    const tick = now => {
+      const t = (now - t0) / 1000;
+      photo.style.transform = `translate3d(0,${(-t * 5).toFixed(1)}px,0)`;
+      fill(clamp((t - 1.3) / 2.9));
+      if (t >= 3.5) trustIn(1700);
+      if (t >= 5.3 && !lifted) { lifted = true; awards.classList.add('lift'); }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    return;
+  }
+
+  // hero figure: slow float + scroll drift + pointer parallax, eased every frame
+  let px = 0, py = 0, tx = 0, ty = 0;
+  addEventListener('pointermove', e => { tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; }, { passive: true });
+  const prog = $('#prog'), par = $$('[data-speed]'), scrub = $$('[data-scrub]'), drift = $$('.head .h2, .faq .h2'), title = $('.title'), heroH = $('.hero');
+  let mx = 0, vel = 0, lastSY = scrollY;
+  const loop = now => {
+    const sy = scrollY, dv = sy - lastSY; lastSY = sy;
+    vel += (Math.abs(dv) * .08 - vel) * .1;
+    mx -= .6 + vel * 1.4; const half = mq.scrollWidth / 2; if (half && -mx >= half) mx += half;
+    mq.style.transform = `translate3d(${mx}px,0,0)`;
+    if (innerWidth > 760) par.forEach(el => { const r = el.getBoundingClientRect(); const c = r.top - parseFloat(el.style.translate.split(' ')[1] || 0) + r.height / 2 - innerHeight / 2; el.style.translate = `0 ${(c * +el.dataset.speed).toFixed(1)}px`; });
+    const t = now / 1000, k = innerWidth > 760 ? 1 : 0;
+    px += (tx - px) * .05; py += (ty - py) * .05;
+    // leaving the hero: the figure grows and turns, the title slides up and fades
+    const hp = clamp(sy / heroH.offsetHeight);
+    const y = sy * .12 * k + Math.sin(t * .9) * 10 + py * 18 * k, x = px * 26 * k, rot = Math.sin(t * .6) * 2 + px * 4 * k + hp * 14;
+    photo.style.transform = `translate3d(${x.toFixed(2)}px,${y.toFixed(2)}px,0) rotate(${rot.toFixed(2)}deg) scale(${(1 + hp * .22).toFixed(3)})`;
+    title.style.transform = `translate3d(0,${(-hp * 140).toFixed(1)}px,0)`; title.style.opacity = (1 - hp * .9).toFixed(3);
+    // blocks grow into place as they scroll in
+    const vh = innerHeight;
+    scrub.forEach(el => { const r = el.getBoundingClientRect(); const p = clamp((vh - r.top) / (vh * .65)); const e = 1 - Math.pow(1 - p, 3);
+      el.style.transform = `scale(${(.88 + .12 * e).toFixed(4)})`; el.style.opacity = (.35 + .65 * e).toFixed(3); });
+    // section titles drift sideways with the scroll
+    if (k) drift.forEach(el => { const r = el.getBoundingClientRect(); el.style.transform = `translate3d(${((r.top + r.height / 2 - vh / 2) * -.06).toFixed(1)}px,0,0)`; });
+    prog.style.transform = `scaleX(${scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight)})`;
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    // magnetic buttons
+    $$('.btn').forEach(b => {
+      b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .2}px,${(e.clientY - r.top - r.height / 2) * .28}px)`; });
+      b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+    });
+    // dark blocks: soft light follows the cursor
+    $$('[data-spot]').forEach(d => { const sp = document.createElement('div'); sp.className = 'spot'; d.prepend(sp);
+      d.addEventListener('pointermove', e => { const r = d.getBoundingClientRect(); d.style.setProperty('--mx', e.clientX - r.left + 'px'); d.style.setProperty('--my', e.clientY - r.top + 'px'); }); });
+    // light follows the cursor on service cards
+    $$('.sv').forEach(c => c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px'); }));
+    // inertial wheel scrolling
+    let target = scrollY, cur = scrollY, running = false;
+    const maxY = () => document.documentElement.scrollHeight - innerHeight;
+    const glide = () => { cur += (target - cur) * .09; if (Math.abs(target - cur) < .5) { cur = target; running = false; } scrollTo({ top: cur, behavior: 'instant' }); if (running) requestAnimationFrame(glide); };
+    addEventListener('wheel', e => {
+      if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      if (!running) target = cur = scrollY;
+      target = Math.max(0, Math.min(maxY(), target + e.deltaY * (e.deltaMode === 1 ? 40 : 1)));
+      if (!running) { running = true; requestAnimationFrame(glide); }
+    }, { passive: false });
+    addEventListener('keydown', () => { running = false; });
+    document.addEventListener('click', e => { if (e.target.closest('a[href^="#"]')) running = false; });
+  }
+
+  const onScroll = () => {
+    const r = stmtSec.getBoundingClientRect();
+    fill(clamp((innerHeight * .85 - r.top) / (r.height * .75)));
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { trustIn(); o.disconnect(); } }), { threshold: .3 }).observe(panel);
+})();
+</script>
+</body>
+</html>
