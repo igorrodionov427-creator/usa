@@ -1,0 +1,5 @@
+.git
+_src
+build.py
+wrangler.jsonc
+.assetsignore

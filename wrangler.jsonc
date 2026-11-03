@@ -1,0 +1,8 @@
+// Cloudflare Workers static site: serves the built pages from the repo root.
+{
+  "name": "apolline",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./"
+  }
+}
