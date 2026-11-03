@@ -3,7 +3,7 @@
     python build.py
 
 Reads _src/index.html (English source) and the dictionary in i18n.js, then writes
-index.html (English) plus ru/ de/ fr/ es/ it/ pl/ sr/ pages, sitemap.xml and llms.txt.
+index.html (English) plus ru/ de/ fr/ es/ it/ pl/ sr/ pages, sitemap.xml, robots.txt and llms.txt.
 Needs beautifulsoup4.
 """
 import html
@@ -14,7 +14,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Comment, NavigableString
 
 ROOT = Path(__file__).resolve().parent
-BASE = 'https://igorrodionov427-creator.github.io/usa/'
+BASE = 'https://apolline.site/'
 OG_IMAGE = BASE + 'media/og.jpg'
 LOCALES = {'en': 'en_US', 'ru': 'ru_RU', 'de': 'de_DE', 'fr': 'fr_FR', 'es': 'es_ES', 'it': 'it_IT', 'pl': 'pl_PL', 'sr': 'sr_RS'}
 TELEGRAM = 'https://t.me/nohassle_ru'
@@ -146,5 +146,6 @@ if __name__ == '__main__':
     for code in langs:
         print('built', build(code, langs, rows, src).relative_to(ROOT))
     sitemap(langs)
+    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /_src/\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
     llms(src)
-    print('built sitemap.xml, llms.txt')
+    print('built sitemap.xml, robots.txt, llms.txt')

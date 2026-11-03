@@ -6,14 +6,14 @@ Apolline is a marketing and automation team for small businesses: social media, 
 
 ## Pages
 
-- [EN](https://igorrodionov427-creator.github.io/usa/)
-- [RU](https://igorrodionov427-creator.github.io/usa/ru/)
-- [DE](https://igorrodionov427-creator.github.io/usa/de/)
-- [FR](https://igorrodionov427-creator.github.io/usa/fr/)
-- [ES](https://igorrodionov427-creator.github.io/usa/es/)
-- [IT](https://igorrodionov427-creator.github.io/usa/it/)
-- [PL](https://igorrodionov427-creator.github.io/usa/pl/)
-- [SR](https://igorrodionov427-creator.github.io/usa/sr/)
+- [EN](https://apolline.site/)
+- [RU](https://apolline.site/ru/)
+- [DE](https://apolline.site/de/)
+- [FR](https://apolline.site/fr/)
+- [ES](https://apolline.site/es/)
+- [IT](https://apolline.site/it/)
+- [PL](https://apolline.site/pl/)
+- [SR](https://apolline.site/sr/)
 
 ## Services
 
