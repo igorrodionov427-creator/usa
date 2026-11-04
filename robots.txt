@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /_src/
+Disallow: /social/
 
 Sitemap: https://apolline.site/sitemap.xml

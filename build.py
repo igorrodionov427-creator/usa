@@ -149,6 +149,6 @@ if __name__ == '__main__':
     for code in langs:
         print('built', build(code, langs, rows, src).relative_to(ROOT))
     sitemap(langs)
-    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /_src/\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
+    (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /_src/\nDisallow: /social/\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
     llms(src)
     print('built sitemap.xml, robots.txt, llms.txt')
