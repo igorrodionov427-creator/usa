@@ -20,7 +20,7 @@ LOCALES = {'en': 'en_US', 'ru': 'ru_RU', 'de': 'de_DE', 'fr': 'fr_FR', 'es': 'es
 TELEGRAM = 'https://t.me/apollineAG'
 BOT = 'https://t.me/ApollineAGbot'
 WHATSAPP = 'https://wa.me/79670450339'
-SOCIAL = [TELEGRAM, 'https://www.instagram.com/apollineag/', 'https://x.com/ApollineAG', 'https://www.tiktok.com/@apollineag']
+SOCIAL = [TELEGRAM, 'https://www.instagram.com/apollineag/']
 
 
 def load_dict():
