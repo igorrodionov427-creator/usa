@@ -17,7 +17,10 @@ ROOT = Path(__file__).resolve().parent
 BASE = 'https://apolline.site/'
 OG_IMAGE = BASE + 'media/og.jpg'
 LOCALES = {'en': 'en_US', 'ru': 'ru_RU', 'de': 'de_DE', 'fr': 'fr_FR', 'es': 'es_ES', 'it': 'it_IT', 'pl': 'pl_PL', 'sr': 'sr_RS'}
-TELEGRAM = 'https://t.me/nohassle_ru'
+TELEGRAM = 'https://t.me/apollineAG'
+BOT = 'https://t.me/ApollineAGbot'
+WHATSAPP = 'https://wa.me/79670450339'
+SOCIAL = [TELEGRAM, 'https://www.instagram.com/apollineag/', 'https://x.com/ApollineAG', 'https://www.tiktok.com/@apollineag']
 
 
 def load_dict():
@@ -98,7 +101,7 @@ def build(lang, langs, rows, src):
             'acceptedAnswer': {'@type': 'Answer', 'text': norm(qa.p.get_text())}} for qa in soup.select('#qas .qa')]
     graph = [
         {'@type': 'ProfessionalService', '@id': BASE + '#org', 'name': 'Apolline', 'url': page_url(lang), 'image': OG_IMAGE,
-         'logo': BASE + 'media/og.jpg', 'description': desc, 'areaServed': 'Worldwide', 'sameAs': [TELEGRAM],
+         'logo': BASE + 'media/og.jpg', 'description': desc, 'areaServed': 'Worldwide', 'sameAs': SOCIAL,
          'availableLanguage': [LOCALES[c].replace('_', '-') for c in langs],
          'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': t('Services'), 'itemListElement': services}},
         {'@type': 'WebSite', '@id': BASE + '#site', 'name': 'Apolline', 'url': BASE, 'inLanguage': LOCALES[lang].replace('_', '-'),
@@ -136,7 +139,7 @@ def llms(src):
     lines += ['', '## FAQ', '']
     for qa in soup.select('#qas .qa'):
         lines += [f'### {norm(qa.button.get_text())}', '', norm(qa.p.get_text()), '']
-    lines += ['## Contact', '', f'- Telegram: {TELEGRAM}', '']
+    lines += ['## Contact', '', f'- Telegram: {TELEGRAM}', f'- Request bot: {BOT}', f'- WhatsApp: {WHATSAPP}', '- Instagram, X, TikTok: @apollineag', '']
     (ROOT / 'llms.txt').write_text('\n'.join(lines), encoding='utf-8')
 
 
