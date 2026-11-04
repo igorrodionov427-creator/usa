@@ -72,7 +72,7 @@ def md(text):
 def load_posts():
     posts = []
     for f in sorted((ROOT / '_src' / 'blog').glob('*.md')):
-        raw = f.read_text(encoding='utf-8')
+        raw = f.read_text(encoding='utf-8').replace(chr(13), '')
         fm, body = re.match(r'^---\n(.*?)\n---\n(.*)$', raw, re.S).groups()
         meta = dict(line.split(': ', 1) for line in fm.split('\n') if ': ' in line)
         words = len(re.sub(r'[#|*\-\[\]()>]', ' ', body).split())
