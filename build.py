@@ -13,6 +13,8 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Comment, NavigableString
 
+import blog
+
 ROOT = Path(__file__).resolve().parent
 BASE = 'https://apolline.site/'
 OG_IMAGE = BASE + 'media/og.jpg'
@@ -119,15 +121,19 @@ def build(lang, langs, rows, src):
     return out
 
 
-def sitemap(langs):
-    alts = ''.join(f'\n    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(c)}"/>' for c in langs)
-    alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("en")}"/>'
-    urls = ''.join(f'\n  <url>\n    <loc>{page_url(c)}</loc>{alts}\n  </url>' for c in langs)
+def sitemap(langs, posts):
+    NL = '\n'
+    alts = ''.join(f'{NL}    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(c)}"/>' for c in langs)
+    alts += f'{NL}    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("en")}"/>'
+    last = max(p['date'] for p in posts)
+    urls = ''.join(f'{NL}  <url>{NL}    <loc>{page_url(c)}</loc>{NL}    <lastmod>{last}</lastmod>{alts}{NL}  </url>' for c in langs)
+    urls += f'{NL}  <url>{NL}    <loc>{BASE}blog/</loc>{NL}    <lastmod>{last}</lastmod>{NL}  </url>'
+    urls += ''.join(f'{NL}  <url>{NL}    <loc>{p["url"]}</loc>{NL}    <lastmod>{p["date"]}</lastmod>{NL}  </url>' for p in posts)
     (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                                       'xmlns:xhtml="http://www.w3.org/1999/xhtml">' + urls + '\n</urlset>\n', encoding='utf-8')
 
 
-def llms(src):
+def llms(src, posts):
     soup = BeautifulSoup(src, 'html.parser')
     lines = ['# Apolline', '', f'> {norm(soup.find("meta", attrs={"name": "description"})["content"])}', '',
              'Apolline is a marketing and automation team for small businesses: social media, video, ads, marketplaces, '
@@ -139,16 +145,19 @@ def llms(src):
     lines += ['', '## FAQ', '']
     for qa in soup.select('#qas .qa'):
         lines += [f'### {norm(qa.button.get_text())}', '', norm(qa.p.get_text()), '']
+    lines += ['## Guides (blog)', ''] + [f'- [{p["h1"]}]({p["url"]}): {p["description"]}' for p in posts] + ['']
     lines += ['## Contact', '', f'- Telegram: {TELEGRAM}', f'- Request bot: {BOT}', f'- WhatsApp: {WHATSAPP}', '- Instagram, X, TikTok: @apollineag', '']
     (ROOT / 'llms.txt').write_text('\n'.join(lines), encoding='utf-8')
 
 
 if __name__ == '__main__':
     langs, rows = load_dict()
+    posts = blog.build_blog()
     src = (ROOT / '_src' / 'index.html').read_text(encoding='utf-8')
+    src = src.replace('__GUIDES__', ''.join(f'<a href="blog/{p["slug"]}/">{html.escape(p["h1"])}</a>' for p in posts[:5]))
     for code in langs:
         print('built', build(code, langs, rows, src).relative_to(ROOT))
-    sitemap(langs)
+    sitemap(langs, posts)
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /_src/\nDisallow: /social/\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
-    llms(src)
+    llms(src, posts)
     print('built sitemap.xml, robots.txt, llms.txt')
