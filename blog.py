@@ -135,6 +135,7 @@ tr:last-child td{border-bottom:0}
 footer{border-top:1px solid var(--hair);margin-top:60px;padding:30px 0 50px;font:500 14px/1.6 var(--ui);color:var(--grey)}
 footer .wide{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}footer a{text-decoration:none}footer a:hover{color:var(--ink)}
 footer nav{display:flex;gap:18px;flex-wrap:wrap}
+.pnote{position:fixed;left:16px;bottom:16px;z-index:60;max-width:400px;background:#f4f4f4;color:#111;border-radius:16px;padding:14px 16px;font:500 13px/1.45 'Inter Tight',system-ui,sans-serif;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);display:none;gap:12px;align-items:center}.pnote.on{display:flex}.pnote a{color:#111;text-decoration:underline;text-underline-offset:2px}.pnote button{flex:none;border:0;border-radius:999px;background:#111;color:#f4f4f4;height:34px;padding:0 16px;font:600 13px 'Inter Tight',system-ui,sans-serif;cursor:pointer}@media(max-width:820px){.pnote{right:16px;max-width:none;bottom:calc(84px + env(safe-area-inset-bottom))}}
 """
 
 
@@ -153,8 +154,7 @@ def page(title, desc, canonical, body, ld, og_type='article', robots=None):
 <meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{canonical}"><meta property="og:image" content="{OG_IMAGE}">
 <meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{html.escape(title)}">
 <meta name="twitter:description" content="{html.escape(desc)}"><meta name="twitter:image" content="{OG_IMAGE}">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..700&family=Archivo:wdth,wght@100..125,500..800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css">
 <style>{CSS}</style>
 {f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ld else ''}
 </head>
@@ -163,7 +163,9 @@ def page(title, desc, canonical, body, ld, og_type='article', robots=None):
 <nav><a class="hide" href="/#services">Services</a><a class="hide" href="/#pay">Pay for results</a><a href="/blog/"{' class="on"' if '/blog/' in canonical else ''}>Blog</a><a class="btn" href="/#contact">Message us ↗</a></nav></div></header>
 {body}
 <footer><div class="wide"><span>© 2026 Apolline · social media, video, ads, outreach, bots and websites for small businesses</span>
-<nav><a href="/">Home</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram</a><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a></nav></div></footer>
+<nav><a href="/">Home</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram</a><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/legal/">Legal notice</a></nav></div></footer>
+<div class="pnote" id="pnote" role="region" aria-label="Privacy"><span>No tracking cookies here. We don't use analytics or ad trackers. <a href="/privacy/">Privacy policy</a></span><button type="button">OK</button></div>
+<script>(()=>{{const n=document.getElementById('pnote');let seen=null;try{{seen=localStorage.getItem('ap_notice')}}catch(e){{}}if(!seen)n.classList.add('on');n.querySelector('button').onclick=()=>{{n.classList.remove('on');try{{localStorage.setItem('ap_notice','1')}}catch(e){{}}}}}})()</script>
 </body>
 </html>
 """

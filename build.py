@@ -14,6 +14,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Comment, NavigableString
 
 import blog
+import legal
 
 ROOT = Path(__file__).resolve().parent
 BASE = 'https://apolline.site/'
@@ -121,7 +122,7 @@ def build(lang, langs, rows, src):
     return out
 
 
-def sitemap(langs, posts):
+def sitemap(langs, posts, extra=()):
     NL = '\n'
     alts = ''.join(f'{NL}    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(c)}"/>' for c in langs)
     alts += f'{NL}    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("en")}"/>'
@@ -129,6 +130,7 @@ def sitemap(langs, posts):
     urls = ''.join(f'{NL}  <url>{NL}    <loc>{page_url(c)}</loc>{NL}    <lastmod>{last}</lastmod>{alts}{NL}  </url>' for c in langs)
     urls += f'{NL}  <url>{NL}    <loc>{BASE}blog/</loc>{NL}    <lastmod>{last}</lastmod>{NL}  </url>'
     urls += ''.join(f'{NL}  <url>{NL}    <loc>{p["url"]}</loc>{NL}    <lastmod>{p["date"]}</lastmod>{NL}  </url>' for p in posts)
+    urls += ''.join(f'{NL}  <url>{NL}    <loc>{u}</loc>{NL}    <lastmod>{legal.UPDATED}</lastmod>{NL}  </url>' for u in extra)
     (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                                       'xmlns:xhtml="http://www.w3.org/1999/xhtml">' + urls + '\n</urlset>\n', encoding='utf-8')
 
@@ -153,11 +155,12 @@ def llms(src, posts):
 if __name__ == '__main__':
     langs, rows = load_dict()
     posts = blog.build_blog()
+    legal_urls = legal.build_legal()
     src = (ROOT / '_src' / 'index.html').read_text(encoding='utf-8')
     src = src.replace('__GUIDES__', ''.join(f'<a href="blog/{p["slug"]}/">{html.escape(p["h1"])}</a>' for p in posts[:5]))
     for code in langs:
         print('built', build(code, langs, rows, src).relative_to(ROOT))
-    sitemap(langs, posts)
+    sitemap(langs, posts, legal_urls)
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /_src/\nDisallow: /social/\n\nSitemap: {BASE}sitemap.xml\n', encoding='utf-8')
     llms(src, posts)
     print('built sitemap.xml, robots.txt, llms.txt')
