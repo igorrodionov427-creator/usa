@@ -12,7 +12,7 @@ UPDATED = '2026-11-05'
 OPERATOR = {
     'name': '',        # legal name of the person or company running Apolline
     'address': '',     # postal address
-    'email': '',       # contact email for privacy requests
+    'email': 'apolline.agency@gmail.com',       # contact email for privacy requests
 }
 CONTACTS = [('Telegram', 'https://t.me/apollineAG', '@apollineAG'), ('Request bot', 'https://t.me/ApollineAGbot', '@ApollineAGbot'),
             ('WhatsApp', 'https://wa.me/79670450339', '+7 967 045-03-39'), ('Instagram', 'https://www.instagram.com/apollineag/', '@apollineag')]

@@ -163,7 +163,7 @@ def page(title, desc, canonical, body, ld, og_type='article', robots=None):
 <nav><a class="hide" href="/#services">Services</a><a class="hide" href="/#pay">Pay for results</a><a href="/blog/"{' class="on"' if '/blog/' in canonical else ''}>Blog</a><a class="btn" href="/#contact">Message us ↗</a></nav></div></header>
 {body}
 <footer><div class="wide"><span>© 2026 Apolline · social media, video, ads, outreach, bots and websites for small businesses</span>
-<nav><a href="/">Home</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram</a><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/legal/">Legal notice</a></nav></div></footer>
+<nav><a href="/">Home</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram</a><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:apolline.agency@gmail.com">Email</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/legal/">Legal notice</a></nav></div></footer>
 <div class="pnote" id="pnote" role="region" aria-label="Privacy"><span>No tracking cookies here. We don't use analytics or ad trackers. <a href="/privacy/">Privacy policy</a></span><button type="button">OK</button></div>
 <script>(()=>{{const n=document.getElementById('pnote');let seen=null;try{{seen=localStorage.getItem('ap_notice')}}catch(e){{}}if(!seen)n.classList.add('on');n.querySelector('button').onclick=()=>{{n.classList.remove('on');try{{localStorage.setItem('ap_notice','1')}}catch(e){{}}}}}})()</script>
 </body>
@@ -178,7 +178,7 @@ def card(p):
 
 CTA = f"""<section class="cta"><h2>Hand this task to us.</h2>
 <p>Social media, video, ads, outreach, bots and websites — one team instead of five contractors. For suitable projects we work for a percentage of sales: no orders, no fee.</p>
-<div class="row"><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram @apollineAG</a><a class="l" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a class="l" href="{BOT}" target="_blank" rel="noopener">Request bot</a></div></section>"""
+<div class="row"><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram @apollineAG</a><a class="l" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a class="l" href="{BOT}" target="_blank" rel="noopener">Request bot</a><a class="l" href="mailto:apolline.agency@gmail.com">apolline.agency@gmail.com</a></div></section>"""
 
 ORG = {'@type': 'Organization', '@id': BASE + '#org', 'name': 'Apolline', 'url': BASE, 'logo': BASE + 'apple-touch-icon.png'}
 

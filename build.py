@@ -23,6 +23,7 @@ LOCALES = {'en': 'en_US', 'ru': 'ru_RU', 'de': 'de_DE', 'fr': 'fr_FR', 'es': 'es
 TELEGRAM = 'https://t.me/apollineAG'
 BOT = 'https://t.me/ApollineAGbot'
 WHATSAPP = 'https://wa.me/79670450339'
+EMAIL = 'apolline.agency@gmail.com'
 SOCIAL = [TELEGRAM, 'https://www.instagram.com/apollineag/', 'https://www.youtube.com/@apollineAgency']
 
 
@@ -104,7 +105,7 @@ def build(lang, langs, rows, src):
             'acceptedAnswer': {'@type': 'Answer', 'text': norm(qa.p.get_text())}} for qa in soup.select('#qas .qa')]
     graph = [
         {'@type': 'ProfessionalService', '@id': BASE + '#org', 'name': 'Apolline', 'url': page_url(lang), 'image': OG_IMAGE,
-         'logo': BASE + 'media/og.jpg', 'description': desc, 'areaServed': 'Worldwide', 'sameAs': SOCIAL,
+         'logo': BASE + 'media/og.jpg', 'description': desc, 'email': EMAIL, 'areaServed': 'Worldwide', 'sameAs': SOCIAL,
          'availableLanguage': [LOCALES[c].replace('_', '-') for c in langs],
          'hasOfferCatalog': {'@type': 'OfferCatalog', 'name': t('Services'), 'itemListElement': services}},
         {'@type': 'WebSite', '@id': BASE + '#site', 'name': 'Apolline', 'url': BASE, 'inLanguage': LOCALES[lang].replace('_', '-'),
@@ -148,7 +149,7 @@ def llms(src, posts):
     for qa in soup.select('#qas .qa'):
         lines += [f'### {norm(qa.button.get_text())}', '', norm(qa.p.get_text()), '']
     lines += ['## Guides (blog)', ''] + [f'- [{p["h1"]}]({p["url"]}): {p["description"]}' for p in posts] + ['']
-    lines += ['## Contact', '', f'- Telegram: {TELEGRAM}', f'- Request bot: {BOT}', f'- WhatsApp: {WHATSAPP}', '- Instagram, X, TikTok: @apollineag', '']
+    lines += ['## Contact', '', f'- Telegram: {TELEGRAM}', f'- Request bot: {BOT}', f'- WhatsApp: {WHATSAPP}', f'- Email: {EMAIL}', '- Instagram, X, TikTok: @apollineag', '']
     (ROOT / 'llms.txt').write_text('\n'.join(lines), encoding='utf-8')
 
 
