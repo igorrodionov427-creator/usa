@@ -301,6 +301,9 @@ footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u
 .lang select:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
 .lang option{color:#111;background:#fff}
 
+/* first screen fills wide monitors; the rest keeps the 1440 layout size */
+@media (min-width:761px){.hero{--u:min(calc(100vw / 1440), 1.333px)}}
+
 /* ---------- phone ---------- */
 @media (max-width:760px){
   :root{--u:calc(100vw / 390)}
