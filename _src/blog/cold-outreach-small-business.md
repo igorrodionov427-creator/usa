@@ -70,4 +70,4 @@ Change one thing at a time: the subject, the first line, the offer.
 
 Outreach is a whole system: building lists, domains, warm-up, copy, sending, follow-ups, handling replies, the CRM. A lot of small teams prefer to outsource all of that and just take the calls.
 
-We run outreach end to end at Apolline, and for suitable projects we work for a share of the deals we bring in. See [how pay-for-performance works](/blog/pay-for-performance-marketing/) or [drop us a message](/#contact).
+We run outreach end to end at Apolline for a fixed monthly price, agreed before we start. [Drop us a message](/#contact) and tell us who you want to reach.

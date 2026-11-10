@@ -74,4 +74,4 @@ Keep an eye on impressions, click-through, conversion and sales for each listing
 
 ## Want us to do it?
 
-At Apolline we build listings end to end: keyword research, product photos and infographics, titles and copy. For suitable sellers we also run product cards for a percentage of sales. Have a look at [our services](/#services) or [send us a message](/#contact).
+At Apolline we build listings end to end: keyword research, product photos and infographics, titles and copy. Every project has a fixed price, agreed before we start. Have a look at [our services](/#services) or [send us a message](/#contact).

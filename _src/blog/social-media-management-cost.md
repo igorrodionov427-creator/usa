@@ -1,7 +1,7 @@
 ---
 title: How Much Does Social Media Management Cost in 2026? A Small Business Pricing Guide
 h1: How much does social media management cost in 2026?
-description: Real price ranges for social media management in 2026 — freelancers, agencies and in-house — plus what is included, hidden costs and how to pay only for results.
+description: Real price ranges for social media management in 2026 — freelancers, agencies and in-house — plus what is included, hidden costs and how to avoid surprises.
 date: 2026-11-05
 tag: Pricing
 ---
@@ -48,11 +48,9 @@ An agency costs more but gives you a team that does not disappear. For small bus
 
 Hiring in-house makes sense once social media is a main sales channel and you can pay for more than one person. We go through this choice in [outsourcing vs. hiring in-house](/blog/outsource-social-media-vs-in-house/).
 
-## Paying for customers instead of posts
+## Why we quote a fixed price
 
-The usual deal is a fixed fee for a fixed number of posts. But posts were never the point. Customers were.
-
-That is why more agencies now offer performance-based pricing, where they earn a cut of the sales they bring. We do this at Apolline for projects where it fits: we find the customers, you get the order, and only then you pay us a percentage. No orders, no fee. The details are in [how pay-for-performance marketing works](/blog/pay-for-performance-marketing/).
+Hourly billing and vague "packages" are where most budget surprises come from. We prefer the opposite: we look at the task, agree what is included, and give you one price before any work starts. It goes into the agreement and does not change halfway through the month.
 
 ## Ask these before you sign anything
 
@@ -67,4 +65,4 @@ That is why more agencies now offer performance-based pricing, where they earn a
 
 For most small businesses, professional social media management in 2026 lands somewhere around **$1,000 to $4,000 a month**, plus ads. Our advice: fewer platforms, done well, with video, and judged by leads rather than likes.
 
-If you want a number for your own business, or you are curious about the pay-for-results option, [send us a message](/#contact). A couple of sentences about the task is enough, and the first conversation costs nothing.
+If you want a number for your own business, just tell us what you need, [send us a message](/#contact). A couple of sentences about the task is enough, and the first conversation costs nothing.

@@ -78,7 +78,7 @@ def load_posts():
         words = len(re.sub(r'[#|*\-\[\]()>]', ' ', body).split())
         posts.append({**meta, 'slug': f.stem, 'body': body, 'html': md(body), 'minutes': max(3, round(words / 220)),
                       'url': f'{BASE}blog/{f.stem}/', 'lead': re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', body.strip().split('\n\n')[0])})
-    order = ['social-media-management-cost', 'pay-for-performance-marketing', 'short-form-video-for-small-business',
+    order = ['social-media-management-cost', 'short-form-video-for-small-business',
              'outsource-social-media-vs-in-house', 'social-media-content-calendar', 'chatbot-for-small-business',
              'cold-outreach-small-business', 'marketplace-listing-optimization']
     return sorted(posts, key=lambda p: order.index(p['slug']) if p['slug'] in order else 99)
@@ -160,7 +160,7 @@ def page(title, desc, canonical, body, ld, og_type='article', robots=None):
 </head>
 <body>
 <header class="top"><div class="wide"><a class="logo" href="/"><i>A</i>APOLLINE</a>
-<nav><a class="hide" href="/#services">Services</a><a class="hide" href="/#pay">Pay for results</a><a href="/blog/"{' class="on"' if '/blog/' in canonical else ''}>Blog</a><a class="btn" href="/#contact">Message us ↗</a></nav></div></header>
+<nav><a class="hide" href="/#services">Services</a><a class="hide" href="/#faq">FAQ</a><a href="/blog/"{' class="on"' if '/blog/' in canonical else ''}>Blog</a><a class="btn" href="/#contact">Message us ↗</a></nav></div></header>
 {body}
 <footer><div class="wide"><span>© 2026 Apolline · social media, video, ads, outreach, bots and websites for small businesses</span>
 <nav><a href="/">Home</a><a href="/#services">Services</a><a href="/blog/">Blog</a><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram</a><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:apolline.agency@gmail.com">Email</a><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/legal/">Legal notice</a></nav></div></footer>
@@ -177,7 +177,7 @@ def card(p):
 
 
 CTA = f"""<section class="cta"><h2>Hand this task to us.</h2>
-<p>Social media, video, ads, outreach, bots and websites — one team instead of five contractors. For suitable projects we work for a percentage of sales: no orders, no fee.</p>
+<p>Social media, video, ads, outreach, bots and websites — one team instead of five contractors. Fixed price, quoted before work begins.</p>
 <div class="row"><a href="{TELEGRAM}" target="_blank" rel="noopener">Telegram @apollineAG</a><a class="l" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp</a><a class="l" href="{BOT}" target="_blank" rel="noopener">Request bot</a><a class="l" href="mailto:apolline.agency@gmail.com">apolline.agency@gmail.com</a></div></section>"""
 
 ORG = {'@type': 'Organization', '@id': BASE + '#org', 'name': 'Apolline', 'url': BASE, 'logo': BASE + 'apple-touch-icon.png'}
@@ -219,7 +219,7 @@ def build_blog():
         {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': BASE},
                                                         {'@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': BASE + 'blog/'}]}]}
     (out / 'index.html').write_text(page('Blog — Social Media & Marketing Guides for Small Business | Apolline',
-                                         'Practical guides for small businesses: social media pricing, short-form video, chatbots, cold outreach, marketplaces and pay-for-performance marketing.',
+                                         'Practical guides for small businesses: social media pricing, short-form video, chatbots, cold outreach and marketplaces.',
                                          BASE + 'blog/', body, ld, og_type='website'), encoding='utf-8')
     print('built blog/index.html')
 

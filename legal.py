@@ -75,8 +75,7 @@ def terms():
 <p>The content of this website, including blog articles, is general information about our services and marketing. It is not a binding offer and not legal, tax or financial advice. Price ranges and examples are indicative.</p>
 <h2>Working together</h2>
 <ul>
-<li>Every project starts with a discussion of the task. The scope, deadlines, price and payment model (fixed fee, monthly fee or a percentage of sales) are agreed individually in writing — in a message, an offer or a contract — before work begins.</li>
-<li>For pay-for-results projects, how sales are attributed, the percentage, and when it is paid are agreed in advance. If no orders come from our work, no fee for results is due.</li>
+<li>Every project starts with a discussion of the task. The scope, deadlines, price (a fixed fee per project or a fixed monthly fee) are agreed individually in writing — in a message, an offer or a contract — before work begins.</li>
 <li>You confirm that materials you give us (texts, photos, logos, account access) are yours to use, and that the products and services we promote are legal.</li>
 <li>Unless agreed otherwise, after full payment you receive the rights to use the final materials we create for you. We may show non-confidential results in our portfolio unless you ask us not to.</li>
 </ul>

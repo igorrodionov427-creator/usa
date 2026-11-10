@@ -60,7 +60,7 @@ What often works best is a split. The owner or a staff member films short raw cl
 - Agree on two or three numbers that matter: leads, booked calls, sales.
 - Ask to see work for businesses like yours.
 - Find out who will actually be working on your account.
-- Ask if they would take part of their fee from the sales they bring. A team that trusts its own work often says yes. More on that in [how pay-for-performance works](/blog/pay-for-performance-marketing/).
+- Get a fixed price for the pilot in writing, with exactly what is included, so there are no surprises on the invoice.
 
 ## Our take
 

@@ -141,7 +141,7 @@ def llms(src, posts):
     lines = ['# Apolline', '', f'> {norm(soup.find("meta", attrs={"name": "description"})["content"])}', '',
              'Apolline is a marketing and automation team for small businesses: social media, video, ads, marketplaces, '
              'outreach, bots, websites, documents, copywriting, design and AI tools. Clients work with us by chat, call or video. '
-             'We can work for a percentage of sales: the client pays only after an order from a customer we brought.', '',
+             'We work for a fixed price: the full price is quoted and agreed before work begins.', '',
              '## Pages', ''] + [f'- [{c.upper()}]({page_url(c)})' for c in LOCALES] + ['', '## Services', '']
     for sv in soup.select('#svc .sv'):
         lines.append(f'- **{norm(sv.h3.get_text())}**: ' + ', '.join(norm(li.get_text()) for li in sv.find_all('li')))
