@@ -78,9 +78,11 @@ def load_posts():
         words = len(re.sub(r'[#|*\-\[\]()>]', ' ', body).split())
         posts.append({**meta, 'slug': f.stem, 'body': body, 'html': md(body), 'minutes': max(3, round(words / 220)),
                       'url': f'{BASE}blog/{f.stem}/', 'lead': re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', body.strip().split('\n\n')[0])})
-    order = ['social-media-management-cost', 'short-form-video-for-small-business',
-             'outsource-social-media-vs-in-house', 'social-media-content-calendar', 'chatbot-for-small-business',
-             'cold-outreach-small-business', 'marketplace-listing-optimization']
+    order = ['instagram-marketing-for-small-business', 'small-business-website-cost', 'google-business-profile-optimization',
+             'social-media-management-cost', 'facebook-instagram-ads-budget', 'short-form-video-for-small-business',
+             'how-to-get-more-google-reviews', 'repeat-customers-email-whatsapp', 'outsource-social-media-vs-in-house',
+             'social-media-content-calendar', 'chatbot-for-small-business', 'cold-outreach-small-business',
+             'marketplace-listing-optimization']
     return sorted(posts, key=lambda p: order.index(p['slug']) if p['slug'] in order else 99)
 
 

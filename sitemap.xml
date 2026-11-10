@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://apolline.site/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://apolline.site/ru/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -28,7 +28,7 @@
   </url>
   <url>
     <loc>https://apolline.site/de/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -41,7 +41,7 @@
   </url>
   <url>
     <loc>https://apolline.site/fr/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -54,7 +54,7 @@
   </url>
   <url>
     <loc>https://apolline.site/es/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://apolline.site/it/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -80,7 +80,7 @@
   </url>
   <url>
     <loc>https://apolline.site/pl/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://apolline.site/sr/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://apolline.site/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://apolline.site/ru/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://apolline.site/de/"/>
@@ -106,15 +106,39 @@
   </url>
   <url>
     <loc>https://apolline.site/blog/</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://apolline.site/blog/instagram-marketing-for-small-business/</loc>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://apolline.site/blog/small-business-website-cost/</loc>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://apolline.site/blog/google-business-profile-optimization/</loc>
+    <lastmod>2026-11-10</lastmod>
   </url>
   <url>
     <loc>https://apolline.site/blog/social-media-management-cost/</loc>
     <lastmod>2026-11-05</lastmod>
   </url>
   <url>
+    <loc>https://apolline.site/blog/facebook-instagram-ads-budget/</loc>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
     <loc>https://apolline.site/blog/short-form-video-for-small-business/</loc>
     <lastmod>2026-11-05</lastmod>
+  </url>
+  <url>
+    <loc>https://apolline.site/blog/how-to-get-more-google-reviews/</loc>
+    <lastmod>2026-11-10</lastmod>
+  </url>
+  <url>
+    <loc>https://apolline.site/blog/repeat-customers-email-whatsapp/</loc>
+    <lastmod>2026-11-10</lastmod>
   </url>
   <url>
     <loc>https://apolline.site/blog/outsource-social-media-vs-in-house/</loc>
