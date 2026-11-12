@@ -375,6 +375,8 @@ footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u
 }
 .pnote{position:fixed;left:16px;bottom:16px;z-index:60;max-width:400px;background:#f4f4f4;color:#111;border-radius:16px;padding:14px 16px;font:500 13px/1.45 'Inter Tight',system-ui,sans-serif;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);display:none;gap:12px;align-items:center}.pnote.on{display:flex}.pnote a{color:#111;text-decoration:underline;text-underline-offset:2px}.pnote button{flex:none;border:0;border-radius:999px;background:#111;color:#f4f4f4;height:34px;padding:0 16px;font:600 13px 'Inter Tight',system-ui,sans-serif;cursor:pointer}@media(max-width:820px){.pnote{right:16px;max-width:none;bottom:calc(84px + env(safe-area-inset-bottom))}}
 .fb .fl a{transition:color .3s}.fb .fl a:hover{color:var(--text)}
+.nm{font-style:normal}.nm::after{content:attr(data-n)}
+.pj[data-go]{cursor:pointer}
 </style>
 </head>
 <body>
@@ -391,7 +393,7 @@ footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u
       <div class="logos" data-in>
         <span class="lg1">MAING</span>
         <span class="lg2"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3 8 13 14 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Velion</span>
-        <span class="lg3"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.6"/></svg>EgoLab</span>
+        <span class="lg3"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 8h6" stroke="currentColor" stroke-width="1.6"/></svg><i class="nm" data-n="EgoLab" aria-hidden="true"></i></span>
       </div>
     </div>
 
@@ -529,8 +531,8 @@ footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u
         <div class="meta"><small>MAING · stands</small><h3>Exhibition design</h3><p>We run their social media and send outreach to their customer base.</p></div></div>
       <a class="pj rv" style="--d:.16s" href="https://velionagency.ru/" target="_blank" rel="noopener"><div class="shot"><img src="media/cases/velion-900.jpg" alt="velionagency.ru website" width="900" height="588" loading="lazy" decoding="async"><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
         <div class="meta"><small>Velion · velionagency.ru</small><h3>Bots &amp; AI agents agency</h3><p>We built the website, set up the bots and bought the ads.</p></div></a>
-      <a class="pj rv" style="--d:.24s" href="https://egolab.shop/" target="_blank" rel="noopener"><div class="shot"><img src="media/cases/egolab-900.jpg" alt="egolab.shop website" width="900" height="462" loading="lazy" decoding="async"><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
-        <div class="meta"><small>EgoLab · egolab.shop</small><h3>Sports nutrition store</h3><p>We built the website and set up social media and bots.</p></div></a>
+      <a class="pj rv" style="--d:.24s" data-go="aHR0cHM6Ly9lZ29sYWIuc2hvcC8=" role="link" tabindex="0" data-nosnippet><div class="shot"><img src="media/cases/shop-900.jpg" alt="Sports nutrition store website" width="900" height="462" loading="lazy" decoding="async"><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
+        <div class="meta"><small><i class="nm" data-n="EgoLab · egolab.shop" aria-hidden="true"></i></small><h3>Sports nutrition store</h3><p>We built the website and set up social media and bots.</p></div></a>
       <a class="pj rv" style="--d:.32s" href="http://nohassle.ru/" target="_blank" rel="noopener"><div class="shot"><img src="media/cases/nohassle-900.jpg" alt="nohassle.ru website" width="900" height="588" loading="lazy" decoding="async"><span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
         <div class="meta"><small>NoHassle · nohassle.ru</small><h3>Marketing agency</h3><p>We built the website and the bot, and we run the social media.</p></div></a>
     </div>
@@ -580,6 +582,7 @@ footer{border-top:1px solid var(--hair);padding:calc(var(--u)*40) 0 calc(var(--u
 
 <div class="pnote" id="pnote" role="region" aria-label="Privacy"><span>No tracking cookies here. We don't use analytics or ad trackers. <a href="privacy/">Privacy policy</a></span><button type="button">OK</button></div>
 <script>(()=>{const n=document.getElementById('pnote');let seen=null;try{seen=localStorage.getItem('ap_notice')}catch(e){}if(!seen)n.classList.add('on');n.querySelector('button').onclick=()=>{n.classList.remove('on');try{localStorage.setItem('ap_notice','1')}catch(e){}}})()</script>
+<script>document.querySelectorAll("[data-go]").forEach(a=>{const go=()=>window.open(atob(a.dataset.go),"_blank","noopener");a.addEventListener("click",go);a.addEventListener("keydown",e=>{if(e.key==="Enter")go()})})</script>
 <script src="i18n.js"></script>
 <script>
 (() => {
